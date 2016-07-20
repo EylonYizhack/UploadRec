@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1026645798421",
+    "firebase_url": "https://cookit-45070.firebaseio.com",
+    "project_id": "cookit-45070",
+    "storage_bucket": "cookit-45070.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026645798421:android:311c5ed2a62e64a6",
+        "android_client_info": {
+          "package_name": "com.chatter.android.uploadrec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026645798421-svj69efa0480qhckrkluj5v1p3rai2kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByNEviZ6pm3CnBRooeabSzjDmipo8kM64"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
