@@ -159,6 +159,10 @@ public class Details extends Fragment  {
     {
         return people.getText().toString();
     }
+    public  String getDetailsHezka()
+    {
+        return hezka.getText().toString();
+    }
     public  String getDetailsWorth()
     {
         return worth.getText().toString();

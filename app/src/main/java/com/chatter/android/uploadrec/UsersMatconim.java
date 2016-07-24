@@ -62,17 +62,8 @@ public class UsersMatconim {
         UsersMatconim userSm = new UsersMatconim(recId,recName, timeTillDone, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myMref=database.getReference("Matcon");
-        myMref.child(recId).setValue(recName);
-        myMref.child(recId).setValue(timeTillDone);
-        myMref.child(recId).setValue(category);
-        myMref.child(recId).setValue(people);
-        myMref.child(recId).setValue(hezka);
-        myMref.child(recId).setValue(worth);
-        myMref.child(recId).setValue(lvl);
-        myMref.child(recId).setValue(hollyday);
-        myMref.child(recId).setValue(halfy);
-        myMref.child(recId).setValue(ingList);
-        myMref.child(recId).setValue(process);
+
+        myMref.child(recId).setValue(userSm);
     }
 
 }

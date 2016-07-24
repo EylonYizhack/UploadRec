@@ -16,6 +16,7 @@ import com.chatter.android.uploadrec.fragments.Processf;
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     String timeTillDone;
     String recCategory;
     String recPeople;
+    String recHezka;
     String recWorth;
     String recLvl;
     String recHollyday;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity
             timeTillDone=myFragD.getTimeTillDone();
             recCategory=myFragD.getDetailsCategory();
             recPeople = myFragD.getDetailsPeople();
+            recHezka = myFragD.getDetailsHezka();
             recWorth = myFragD.getDetailsWorth();
             recLvl = myFragD.getDetailsLvl();
             recHollyday = myFragD.getDetailsHollyday();
@@ -72,6 +75,8 @@ public class MainActivity extends AppCompatActivity
             ingList = myFragI.getIngList();
             process = myFragP.getProcess();
 
+                UsersMatconim um = new UsersMatconim(getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                um.saveMatcon();
             }
         });
     }
@@ -113,4 +118,9 @@ public class MainActivity extends AppCompatActivity
 
      }
 
+    private String getUuid()
+    {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
 }

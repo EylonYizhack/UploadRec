@@ -53,6 +53,8 @@ public class Login extends Activity
                 @Override
                 public void onSuccess(LoginResult loginResult)
                 {
+                    Intent i = new Intent(Login.this,MainActivity.class);
+                    startActivity(i);
                    // Toast.makeText(getApplicationContext(), loginResult.getAccessToken().getUserId() , Toast.LENGTH_LONG).show();
                   info.setText(
                           "User ID: "   + loginResult.getAccessToken().getUserId());
@@ -76,6 +78,8 @@ public class Login extends Activity
         }
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             this.callbackManager.onActivityResult(requestCode, resultCode, data);
+            Intent i = new Intent(Login.this,MainActivity.class);
+            startActivity(i);
         }
 
 
