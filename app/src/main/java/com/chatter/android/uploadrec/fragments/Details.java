@@ -40,8 +40,7 @@ public class Details extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
         context = getActivity();
         rName = (EditText) rootView.findViewById(R.id.rName);
@@ -64,7 +63,7 @@ public class Details extends Fragment  {
         halfyList = new ArrayList<>();
 
         //enter options to the list
-        categoryList.add("ארוחת בוקר");categoryList.add("ארוחת ערב"); categoryList.add("ארוחת צהריים");
+        categoryList.add("הודי");categoryList.add("סיני"); categoryList.add("איטלקי");categoryList.add("תאילנדי");categoryList.add("טבעוני");categoryList.add("מזרחי");categoryList.add("רוסי");categoryList.add("קינוחים");categoryList.add("סלטים");categoryList.add("מרקים");categoryList.add("ישראלי אותנטי");categoryList.add("מקסיקני");categoryList.add("ארגנטינאי");categoryList.add("מזון מהיר");categoryList.add("צמחוני");categoryList.add("מרענן לקיץ");categoryList.add("קוקטיילים ואלכוהול");
         peopleList.add("1");peopleList.add("2"); peopleList.add("3");peopleList.add("4");peopleList.add("5"); peopleList.add("6");peopleList.add("7");peopleList.add("8"); peopleList.add("9"); peopleList.add("10");
         hezkaList.add("בשרי");hezkaList.add("חלבי");hezkaList.add("מעורב");hezkaList.add("פרווה");
         worthList.add("תקציב נמוך");worthList.add("תתקציב בינוני");worthList.add("יוקרתי");

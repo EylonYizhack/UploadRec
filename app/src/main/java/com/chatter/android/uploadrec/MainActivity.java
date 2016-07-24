@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity
     Button ingredientsBtn;
     Button processBtn;
     Button mSave;
-
     Details myFragD;
     Ingredientsf myFragI;
     Processf myFragP;
@@ -91,12 +90,6 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickIngredients(View v)
     {
-        if(myFragD.getDetailsName().equals("") || myFragD.getTimeTillDone().equals("") || myFragD.getDetailsCategory().equals("") || myFragD.getDetailsPeople().equals("")
-                || myFragD.getDetailsWorth().equals("") || myFragD.getDetailsLvl().equals("") || myFragD.getDetailsHollyday().equals("") || myFragD.getDetailsHalfy().equals(""))
-        {
-            Toast.makeText(context,"יש למלא את כל השדות",Toast.LENGTH_SHORT).show();
-        }
-        else {
             //load fragment 2
             ft = fm.beginTransaction();
             myFragI = new Ingredientsf();
@@ -105,17 +98,10 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
             detailsBtn.setText("V");
             detailsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
-
-        }
     }
 
     public void onClickProcess(View v)
     {
-        /*if (myFragI.getIngList().get(0)==null)
-        {
-            Toast.makeText(context,"אנא עקוב אחרי השלבים",Toast.LENGTH_SHORT).show();
-        }
-        else {*/
             ingredientsBtn.setText("V");
             ingredientsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
                 //load fragment 3
