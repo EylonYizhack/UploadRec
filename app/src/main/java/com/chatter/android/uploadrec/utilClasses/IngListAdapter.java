@@ -1,25 +1,19 @@
-package com.chatter.android.uploadrec;
+package com.chatter.android.uploadrec.utilClasses;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.chatter.android.uploadrec.utilClasses.Ingredients;
+import com.chatter.android.uploadrec.R;
 
 import java.util.ArrayList;
 import java.util.List;

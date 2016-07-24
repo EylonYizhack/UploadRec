@@ -18,21 +18,27 @@
             android:layout_weight="1"
             android:layout_marginLeft="0dp"
             android:onClick="onClickDetails"
-            android:text="פרטים" />
+            android:text="פרטים"
+            android:id="@+id/detailsBtn"
+            android:background="#ffffff"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickIngredients"
-            android:text="מצרכים" />
+            android:text="מצרכים"
+            android:id="@+id/ingredientsBtn"
+            android:background="#ffffff"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickProcess"
-            android:text="אופן הכנה" />
+            android:text="תהליך ההכנה"
+            android:id="@+id/processBtn"
+            android:background="#ffffff"/>
 
         <Button
             android:layout_width="0dp"
@@ -40,7 +46,8 @@
             android:layout_weight="1"
             android:onClick="saveAll"
             android:id="@+id/savee"
-            android:text="שמור " />
+            android:text="שמור מתכון "
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout

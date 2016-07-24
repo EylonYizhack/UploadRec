@@ -1,4 +1,4 @@
-package com.chatter.android.uploadrec;
+package com.chatter.android.uploadrec.utilClasses;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
