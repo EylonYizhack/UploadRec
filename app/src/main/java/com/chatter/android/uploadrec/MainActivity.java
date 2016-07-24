@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                 ft.replace(R.id.container, myFragP);
                 ft.commit();
-
      }
 
 }
