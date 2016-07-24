@@ -1,18 +1,12 @@
-package com.chatter.android.uploadrec;
-
-import android.widget.ListView;
+package com.chatter.android.uploadrec.utilClasses;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Eylon Yizhack on 7/10/2016.
  */
 public class RecpieDet {
-    public String userName;
     public String recpieName;
     public String Time;
     public String category;
@@ -31,9 +25,8 @@ public class RecpieDet {
     public RecpieDet(){}  //empty constructor, must have
 
 
-    public RecpieDet(String id, String userName, String recpieName, String time, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy)
+    public RecpieDet(String id, String recpieName, String time, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy)
     {
-        this.userName = userName;
         this.recpieName = recpieName;
         this.Time = time;
         this.category = category;
@@ -50,8 +43,8 @@ public class RecpieDet {
     public void saveRecpieDet()
     {
         //create an instance of User class
-        RecpieDet recpie=new RecpieDet(id,userName,recpieName,Time,category,people,hezka,worth,lvl,hollyday,halfy);
-        Ingredients ing = new Ingredients(numAmount,amount,Ing);
+        RecpieDet recpie=new RecpieDet(id,recpieName,Time,category,people,hezka,worth,lvl,hollyday,halfy);
+       // Ingredients ing = new Ingredients(numAmount,amount,Ing);
 
         //creating a connection to fire base
         FirebaseDatabase database=FirebaseDatabase.getInstance();

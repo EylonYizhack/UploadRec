@@ -2,12 +2,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chatter.android.uploadrec.Details">
+    tools:context=".fragments.Details">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relativeLayout"
+            android:layout_below="@+id/toolBar"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+            <EditText
+                android:id="@+id/rName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:hint="שם המתכון" />
+
+            <EditText
+                android:id="@+id/timeTillDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:hint="זמן הכנה משוער" />
+
+            <Button
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="בחר קטגוריה" />
+
+            <Button
+                android:id="@+id/people"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="כמות סועדים" />
+
+            <Button
+                android:id="@+id/hezka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="חזקה" />
+
+            <Button
+                android:id="@+id/worth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="תקציב נדרש" />
+
+            <Button
+                android:id="@+id/lvl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="רמת מקצועיות" />
+
+            <Button
+                android:id="@+id/hollyday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="חג" />
+
+            <Button
+                android:id="@+id/halfy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttoncustom1"
+                android:hint="רמת בריאות" />
+        </LinearLayout>
+
+
 
 </FrameLayout>
