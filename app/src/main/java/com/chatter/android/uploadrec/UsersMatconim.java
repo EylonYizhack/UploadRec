@@ -61,7 +61,7 @@ public class UsersMatconim {
     public void saveMatcon() {
         UsersMatconim userSm = new UsersMatconim(recId,recName, timeTillDone, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myMref=database.getReference("Matcon");
+        DatabaseReference myMref=database.getReference("Matconim DB list");
 
         myMref.child(recId).setValue(userSm);
     }

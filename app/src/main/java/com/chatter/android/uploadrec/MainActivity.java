@@ -1,7 +1,9 @@
 package com.chatter.android.uploadrec;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity
 {
     FragmentTransaction ft;
     FragmentManager fm;
+    ProgressDialog dialog;
     Button detailsBtn;
     Button ingredientsBtn;
     Button processBtn;
@@ -75,8 +78,39 @@ public class MainActivity extends AppCompatActivity
             ingList = myFragI.getIngList();
             process = myFragP.getProcess();
 
-                UsersMatconim um = new UsersMatconim(getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
-                um.saveMatcon();
+                new AsyncTask<Void,Void,Void>()
+                {
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        dialog=new ProgressDialog(context);
+                        dialog.setMessage("שומר את המתכון " +  recName);
+                        dialog.setIndeterminate(true);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    }
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        super.onPostExecute(aVoid);
+                        Toast.makeText(MainActivity.this,"נשמר מתכון חדש",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                    @Override
+                    protected Void doInBackground(Void... params)
+                    {
+                        try {
+                            Thread.sleep(2000);
+                            UsersMatconim um = new UsersMatconim(getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            um.saveMatcon();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                }.execute();
+
             }
         });
     }
