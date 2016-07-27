@@ -105,10 +105,8 @@ public class MainActivity extends AppCompatActivity
                     {
                         try {
                             Thread.sleep(2000);
-                            UsersMatconim umUser = new UsersMatconim(getMac(),"Eylon Yizhack");
                             UsersMatconim umRec = new UsersMatconim(getMac(),"Eylon Yizhack",getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
-                            umUser.saveUser();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

@@ -11,10 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -38,6 +44,14 @@ public class Login extends Activity
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLoginFB();
+            }
+        });
+
 //Google login code
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -46,21 +60,19 @@ public class Login extends Activity
     }
 
 //Faccebook login code
-        public void LoginFB(View v)
+        private void mLoginFB()
         {
 
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult)
                 {
-                    Intent i = new Intent(Login.this,MainActivity.class);
-                    startActivity(i);
-                   // Toast.makeText(getApplicationContext(), loginResult.getAccessToken().getUserId() , Toast.LENGTH_LONG).show();
-                  info.setText(
-                          "User ID: "   + loginResult.getAccessToken().getUserId());
 
-                  info1.setText(
-                               "Auth Token: " + loginResult.getAccessToken().getToken());
+                    UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),Profile.getCurrentProfile().getFirstName().toString());
+                    umUser.saveUser();
+
+                    Intent iht = new Intent(Login.this,MainActivity.class);
+                    startActivity(iht);
                 }
 
                 @Override
@@ -78,8 +90,6 @@ public class Login extends Activity
         }
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             this.callbackManager.onActivityResult(requestCode, resultCode, data);
-            Intent i = new Intent(Login.this,MainActivity.class);
-            startActivity(i);
         }
 
 
