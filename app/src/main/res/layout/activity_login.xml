@@ -14,6 +14,7 @@
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="singInGoogle"
         android:layout_gravity="center"/>
 
 
@@ -29,11 +30,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/info_FB"/>
+        android:id="@+id/info_FB"
+        android:textSize="30sp"
+        android:hint="facebook"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/info_FB1"/>
+        android:id="@+id/info_FB1"
+        android:textSize="30sp"
+        android:hint="facebook"/>
 
 
     <TextView
@@ -42,4 +47,9 @@
         android:text="Log in as guest"
         android:gravity="center"
         android:id="@+id/guest"/>
+    
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/status"/>
 </LinearLayout>
