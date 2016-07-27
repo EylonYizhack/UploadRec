@@ -3,6 +3,8 @@ package com.chatter.android.uploadrec;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +18,7 @@ import com.chatter.android.uploadrec.fragments.Details;
 import com.chatter.android.uploadrec.fragments.Ingredientsf;
 import com.chatter.android.uploadrec.fragments.Processf;
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
+import com.chatter.android.uploadrec.utilClasses.User;
 
 import java.util.List;
 import java.util.UUID;
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
             recCategory=myFragD.getDetailsCategory();
@@ -101,8 +105,10 @@ public class MainActivity extends AppCompatActivity
                     {
                         try {
                             Thread.sleep(2000);
-                            UsersMatconim um = new UsersMatconim(getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
-                            um.saveMatcon();
+                            UsersMatconim umUser = new UsersMatconim(getMac(),"Eylon Yizhack");
+                            UsersMatconim umRec = new UsersMatconim(getMac(),"Eylon Yizhack",getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            umRec.saveMatcon();
+                            umUser.saveUser();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -156,5 +162,17 @@ public class MainActivity extends AppCompatActivity
     {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
+    }
+
+    private String getMac()
+    {
+        //seeting WifiManager
+        WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        //getting the info for the manager
+        WifiInfo info = manager.getConnectionInfo();
+        //getting mac address , physical address of the wifi card
+        String address = info.getMacAddress();
+        //returning the address
+        return address;
     }
 }
