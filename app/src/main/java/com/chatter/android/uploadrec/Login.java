@@ -45,6 +45,10 @@ public class Login extends Activity
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
+        updateWithToken(AccessToken.getCurrentAccessToken());//**********
+
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +64,14 @@ public class Login extends Activity
                 .build();
     }
 
+        private void updateWithToken(AccessToken currentAccessToken) {//*************
+            if (currentAccessToken != null) {
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
+            }
+        }
+
+
 //Faccebook login code
         private void mLoginFB()
         {
@@ -68,11 +80,12 @@ public class Login extends Activity
                 @Override
                 public void onSuccess(LoginResult loginResult)
                 {
-                    String userName = Profile.getCurrentProfile().getFirstName().toString();
-                    UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),userName);
-                    umUser.saveUser();
-                    Intent i = new Intent(Login.this,MainActivity.class);
-                    startActivity(i);
+                        String userName = Profile.getCurrentProfile().getName().toString();
+                        UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(), userName);
+                        umUser.saveUser();
+                        Intent i = new Intent(Login.this, MainActivity.class);
+                        startActivity(i);
+
                     //Intent iht = new Intent(Login.this,MainActivity.class);
                     //startActivity(new Intent(context,MainActivity.class));
                     Toast.makeText(Login.this, "Result:"+loginResult, Toast.LENGTH_LONG).show();

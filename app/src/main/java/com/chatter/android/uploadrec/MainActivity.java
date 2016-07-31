@@ -19,6 +19,8 @@ import com.chatter.android.uploadrec.fragments.Ingredientsf;
 import com.chatter.android.uploadrec.fragments.Processf;
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
 import com.chatter.android.uploadrec.utilClasses.User;
+import com.facebook.AccessToken;
+import com.facebook.Profile;
 
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         try {
                             Thread.sleep(2000);
-                            UsersMatconim umRec = new UsersMatconim(getMac(),"Eylon Yizhack",getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickIngredients(View v)
     {
+
             //load fragment 2
             ft = fm.beginTransaction();
             myFragI = new Ingredientsf();
