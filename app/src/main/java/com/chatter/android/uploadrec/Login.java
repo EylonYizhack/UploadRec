@@ -77,7 +77,7 @@ public class Login extends Activity
                     //startActivity(new Intent(context,MainActivity.class));
                     Toast.makeText(Login.this, "Result:"+loginResult, Toast.LENGTH_LONG).show();
                 }
-                //
+
                 @Override
                 public void onCancel()
                 {
