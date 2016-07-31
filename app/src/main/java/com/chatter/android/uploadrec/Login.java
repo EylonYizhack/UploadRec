@@ -1,6 +1,7 @@
 package com.chatter.android.uploadrec;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +32,11 @@ public class Login extends Activity
         private TextView info,info1;
         private LoginButton loginButton;
         protected CallbackManager callbackManager;
-
+        Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.context=context;
 
 //facebook login
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -67,12 +68,14 @@ public class Login extends Activity
                 @Override
                 public void onSuccess(LoginResult loginResult)
                 {
-
-                    UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),Profile.getCurrentProfile().getFirstName().toString());
+                    String userName = Profile.getCurrentProfile().getFirstName().toString();
+                    UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),userName);
                     umUser.saveUser();
-
-                    Intent iht = new Intent(Login.this,MainActivity.class);
-                    startActivity(iht);
+                    Intent i = new Intent(Login.this,MainActivity.class);
+                    startActivity(i);
+                    //Intent iht = new Intent(Login.this,MainActivity.class);
+                    //startActivity(new Intent(context,MainActivity.class));
+                    Toast.makeText(Login.this, "Result:"+loginResult, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
