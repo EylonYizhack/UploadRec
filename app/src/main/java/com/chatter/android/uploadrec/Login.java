@@ -66,7 +66,7 @@ public class Login extends Activity implements GoogleApiClient.OnConnectionFaile
 
         private void updateWithToken(AccessToken currentAccessToken) {
             if (currentAccessToken != null) {
-                Intent i = new Intent(Login.this, MainActivity.class);
+                Intent i = new Intent(Login.this, HomePage.class);
                 startActivity(i);
             }
         }
@@ -81,7 +81,7 @@ public class Login extends Activity implements GoogleApiClient.OnConnectionFaile
                         String userName = Profile.getCurrentProfile().getName().toString();
                         UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(), userName);
                         umUser.saveUser();
-                        Intent i = new Intent(Login.this, MainActivity.class);
+                        Intent i = new Intent(Login.this, HomePage.class);
                         startActivity(i);
 
                     Toast.makeText(Login.this, "Result:"+loginResult, Toast.LENGTH_LONG).show();
