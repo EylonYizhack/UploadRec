@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
 import com.chatter.android.uploadrec.R;
@@ -69,18 +70,22 @@ public class Ingredientsf extends Fragment {
                     String amountNum1=amountNum.getText().toString();
                     String editAmount1= editAmount.getText().toString();
                     String editIng1= editIng.getText().toString();
-                    IngListAdapter ILA = new IngListAdapter(context,inglist);
-                    inglist.add( new Ingredients(amountNum1,editAmount1,editIng1));
+
+                if((amountNum1.equals(null)) || (amountNum1.equals("")) || (amountNum1.equals("0")) || (editIng1.equals(null)) || (editIng1.equals("")) )
+                {
+                    Toast.makeText(context,"נא הזן את כל הנתונים",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    IngListAdapter ILA = new IngListAdapter(context, inglist);
+                    inglist.add(new Ingredients(amountNum1, editAmount1, editIng1));
                     mlistViewIng.setAdapter(ILA);
                     amountNum.setText("");
                     editAmount.setText("גרם");
                     editIng.setText("");
-               // new Ingredients(amountNum1,editAmount1,editIng1)
+                }
             }
         });
-        // myList = (ListView) rootView.findViewById(R.id.fmyList);
-        //myListAdapter adapter = new myListAdapter(getActivity(), studentList.getStudents());
-        //myList.setAdapter(adapter);
         return rootView;
     }
 
