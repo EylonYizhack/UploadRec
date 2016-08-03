@@ -82,7 +82,7 @@ public class Login extends Activity {
                         { Intent i = new Intent(Login.this, HomePage.class);
                             startActivity(i);} */
 
-                    if (profile==null) {
+                    if (profile == null) {
                         Toast.makeText(Login.this, "profile is null", Toast.LENGTH_LONG).show();
                     }
                     else
