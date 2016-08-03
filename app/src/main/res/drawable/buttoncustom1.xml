@@ -20,13 +20,13 @@
             <size
                 android:height="15dp"
                 android:width="270dp"/>
-            <solid android:color="#FFAF24"/>
+            <solid android:color="#C91400"/>
             <stroke android:width="2dp"
                 android:color="#f2f2f2"/>
             <corners android:radius="50dp"/>
-            <gradient android:startColor="#FFAF24"
+            <gradient android:startColor="#C91400"
                 android:centerColor="#FFFFFF"
-                android:endColor="#FFAF24" />
+                android:endColor="#C91400" />
         </shape>
     </item>
     <item android:state_pressed="false" android:state_focused="true">
@@ -35,7 +35,7 @@
                 android:height="15dp"
                 android:width="270dp"/>
             <stroke android:width="1dp"
-                android:color="#FFAF24"/>
+                android:color="#C91400"/>
             <solid android:color="#f2f2f2"/>
             <corners android:radius="50dp"/>
             <gradient android:startColor="#ffffff"

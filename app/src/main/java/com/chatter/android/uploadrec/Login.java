@@ -36,8 +36,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class Login extends Activity implements GoogleApiClient.OnConnectionFailedListener {
-        private TextView info,info1;
+public class Login extends Activity {
         private LoginButton loginButton;
         protected CallbackManager callbackManager;
         Context context;
@@ -47,12 +46,10 @@ public class Login extends Activity implements GoogleApiClient.OnConnectionFaile
         this.context=context;
 
         FacebookSdk.sdkInitialize(getApplicationContext());
-        info = (TextView)findViewById(R.id.info_FB);
-        info1 = (TextView)findViewById(R.id.info_FB1);
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
-        updateWithToken(AccessToken.getCurrentAccessToken());
+        //updateWithToken(AccessToken.getCurrentAccessToken());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,25 +75,36 @@ public class Login extends Activity implements GoogleApiClient.OnConnectionFaile
                 @Override
                 public void onSuccess(LoginResult loginResult)
                 {
-                        String userName = Profile.getCurrentProfile().getName().toString();
-                        UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(), userName);
+                    AccessToken accessToken = loginResult.getAccessToken();
+                    Profile profile = Profile.getCurrentProfile();
+
+                   /* if(fireBase contains this userId)
+                        { Intent i = new Intent(Login.this, HomePage.class);
+                            startActivity(i);} */
+
+                    if (profile==null) {
+                        Toast.makeText(Login.this, "profile is null", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),profile.getName(),"userImg",0);
                         umUser.saveUser();
                         Intent i = new Intent(Login.this, HomePage.class);
                         startActivity(i);
+                    }
 
-                    Toast.makeText(Login.this, "Result:"+loginResult, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onCancel()
                 {
-                    info.setText("Login attempt canceled.");
+                   Toast.makeText(context,"canceled",Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onError(FacebookException e)
                 {
-                    info.setText("Login attempt failed.");
+                    Toast.makeText(context,"Unable to connect the facebook",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -105,8 +113,9 @@ public class Login extends Activity implements GoogleApiClient.OnConnectionFaile
 
         }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+        public void continueAsGuest(View view)
+        {
+            Intent i = new Intent(Login.this, HomePage.class);
+            startActivity(i);
+        }
 }
