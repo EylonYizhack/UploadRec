@@ -5,17 +5,8 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:textDirection="rtl">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:background="#C91400"
-        android:elevation="6dp"
-        android:logo="@drawable/applogo"
-        >
 
-    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:id="@+id/fButton"
         android:layout_width="match_parent"
