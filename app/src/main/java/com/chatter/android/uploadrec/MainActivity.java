@@ -112,10 +112,9 @@ public class MainActivity extends AppCompatActivity
                     {
                         try {
                             Thread.sleep(2000);
-                            //if the device is connected to the internet
-                            //if enable to connect the server
-                            UsersMatconim umRec = new UsersMatconim(getUuid(),"Eylon",getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
+                            //give +3 points to the user and update his prifile on firebase
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -150,13 +149,13 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.container, myFragI);
             ft.commit();
             detailsBtn.setText("V");
-            detailsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
+            detailsBtn.setBackgroundColor(Color.parseColor("#C91400"));
     }
 
     public void onClickProcess(View v)
     {
             ingredientsBtn.setText("V");
-            ingredientsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
+            ingredientsBtn.setBackgroundColor(Color.parseColor("#C91400"));
                 //load fragment 3
                 ft = fm.beginTransaction();
                 myFragP = new Processf();

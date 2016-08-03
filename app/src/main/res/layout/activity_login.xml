@@ -1,21 +1,11 @@
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/backg"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CookIT login"
-        android:gravity="center"
-        android:textSize="70sp"/>
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="singInGoogle"
-        android:layout_gravity="center"/>
 
 
     <com.facebook.login.widget.LoginButton
@@ -23,33 +13,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textSize="15sp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="LoginFB"/>
+        android:layout_marginBottom="10dp"
+        android:onClick="LoginFB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+       />
+
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/info_FB"
-        android:textSize="30sp"
-        android:hint="facebook"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/info_FB1"
-        android:textSize="30sp"
-        android:hint="facebook"/>
+        android:layout_gravity="center_horizontal"
+        android:text="OR" />
 
-
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log in as guest"
         android:gravity="center"
-        android:id="@+id/guest"/>
+        android:id="@+id/guest"
+        android:layout_gravity="center"
+        android:onClick="continueAsGuest"/>
     
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/status"/>
+
 </LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UploadRec</string>
+    <string name="app_name">CookIT</string>
 
     <string name="facebook_app_id">488714411334857</string>
     <string name="fb_login_protocol_scheme">fbAPP_ID</string>
