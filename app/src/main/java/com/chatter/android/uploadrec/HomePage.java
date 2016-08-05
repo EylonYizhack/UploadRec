@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.facebook.Profile;
+
 public class HomePage extends AppCompatActivity {
 
         static Context context;

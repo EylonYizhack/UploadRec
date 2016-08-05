@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
-
         this.context=this;
+
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
