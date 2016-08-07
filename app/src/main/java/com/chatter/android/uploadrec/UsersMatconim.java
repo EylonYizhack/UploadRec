@@ -18,16 +18,14 @@ public class UsersMatconim {
     List<Ingredients> ingList = new ArrayList<>();
     Context context;
     String userId;
-    String userName;
 
 
-    public UsersMatconim(String userId, String userName) {
-        this.userName = userName;
-        this.userId = userId;
+    public UsersMatconim(String user, String uid) {
+        this.userId = uid;
         this.user = user;
     }
 
-    public UsersMatconim(String userId,String userName,String recId,String recName, String timeTillDone, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
+    public UsersMatconim(String recId,String recName, String timeTillDone, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
         this.recId=recId;
         this.hezka = hezka;
         this.ingList = ingList;
@@ -40,27 +38,40 @@ public class UsersMatconim {
         this.hollyday = hollyday;
         this.halfy = halfy;
         this.process = process;
-        this.userId = userId;
-        this.userName = userName;
-    }
 
+    }
+   public  UsersMatconim(){
+
+   }
     public void saveUser() {
         //create an instance of User class
-        UsersMatconim userM = new UsersMatconim(userId, userName); //userImg
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("User");
+        UsersMatconim userM = new UsersMatconim(userId,user);
 
+        //creating a connection to fire base
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        //creating a reference to Users object
+        DatabaseReference myRef = database.getReference("Users");
 
         //saving the user under the UUID
-        myRef.child(userId).setValue(userM);
+        myRef.child(userId).setValue(user);
     }
 
     public void saveMatcon() {
-        UsersMatconim userSm = new UsersMatconim(userId,userName,recId,recName, timeTillDone, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
+        UsersMatconim userSm = new UsersMatconim(recId,recName, timeTillDone, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myMref=database.getReference("Matconim DB list");
-
-        myMref.child(recId).setValue(userSm);
+        DatabaseReference myMref=database.getReference("Matcon");
+        myMref.child(recId).setValue(recName);
+        myMref.child(recId).setValue(timeTillDone);
+        myMref.child(recId).setValue(category);
+        myMref.child(recId).setValue(people);
+        myMref.child(recId).setValue(hezka);
+        myMref.child(recId).setValue(worth);
+        myMref.child(recId).setValue(lvl);
+        myMref.child(recId).setValue(hollyday);
+        myMref.child(recId).setValue(halfy);
+        myMref.child(recId).setValue(ingList);
+        myMref.child(recId).setValue(process);
     }
 
 }
