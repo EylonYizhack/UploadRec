@@ -68,9 +68,6 @@ public class Login extends Activity {
             @Override
             public void onSuccess(final LoginResult loginResult)
             {
-                AccessToken accessToken = loginResult.getAccessToken();
-                Profile profile = Profile.getCurrentProfile();
-
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -78,7 +75,6 @@ public class Login extends Activity {
 
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
-                                // Application code
                                 try {
                                      Name = object.getString("name");
                                 } catch (JSONException e) {
@@ -88,11 +84,9 @@ public class Login extends Activity {
                                 //___________________________________
                                 new AsyncTask<Void,Void,Void>()
                                 {
-
                                     @Override
                                     protected void onPreExecute() {
                                         super.onPreExecute();
-
                                     }
                                     @Override
                                     protected void onPostExecute(Void aVoid) {
@@ -103,24 +97,15 @@ public class Login extends Activity {
                                     @Override
                                     protected Void doInBackground(Void... params)
                                     {
-
                                         UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),Name,"userImg",0);
                                         umUser.saveUser();
-
-
                                         return null;
                                     }
-
                                 }.execute();
                                 //___________________________________
                             }
                         });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender,birthday");
-                request.setParameters(parameters);
                 request.executeAsync();
-
-
             }
 
             @Override
@@ -137,6 +122,12 @@ public class Login extends Activity {
             }
         });
     }
+
+
+
+
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         this.callbackManager.onActivityResult(requestCode, resultCode, data);
     }

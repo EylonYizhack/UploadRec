@@ -29,6 +29,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="0dp"
+            android:onClick="onClickPicture"
+            android:text="תמונה"
+            android:id="@+id/pictureBtn"
+            android:background="#ffffff"/>
+
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="onClickIngredients"
             android:text="מצרכים"
             android:id="@+id/ingredientsBtn"
@@ -49,7 +60,7 @@
             android:layout_weight="1"
             android:onClick="saveAll"
             android:id="@+id/savee"
-            android:text="שמור מתכון "
+            android:text="שמור"
             android:background="#ffffff"/>
     </LinearLayout>
 

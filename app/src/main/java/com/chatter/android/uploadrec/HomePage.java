@@ -1,6 +1,8 @@
 package com.chatter.android.uploadrec;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Profile;
@@ -38,14 +41,14 @@ public class HomePage extends AppCompatActivity {
             tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             tabLayout.setTextDirection(View.TEXT_DIRECTION_RTL);
 
-            final ViewPager ViewPager = (ViewPager)findViewById(R.id.pager);
+            final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
             final PagerAdapterHomePage adapter = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
-            ViewPager.setAdapter(adapter);
-            ViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+            viewPager.setAdapter(adapter);
+            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
-                    ViewPager.setCurrentItem(tab.getPosition());
+                    viewPager.setCurrentItem(tab.getPosition());
                 }
 
                 @Override
@@ -74,9 +77,13 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.GoogleLogin:
-                Toast.makeText(this,"העלאת מתכון",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(HomePage.this,MainActivity.class);
-                startActivity(i);
+                if(Profile.getCurrentProfile()==null)
+                {
+                    dlgFecbookConect();
+                }
+                else
+                {Intent i = new Intent(HomePage.this,MainActivity.class);
+                    startActivity(i);}
                 break;
             case R.id.About:
                 Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();
@@ -86,6 +93,33 @@ public class HomePage extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+//if the user try to upload recpie without beeing logged
+    private void dlgFecbookConect()
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("עליך להרשם על מנת לבצע פעולה זו");
+        final TextView txt = new TextView(this);
+        //specify the type of input expected
+        txt.setText("האם ברצונך להרשם כעת?");
+        //add EditText view to the Dialog
+        builder.setView(txt);
+        // positive feed back
+        builder.setPositiveButton("אישור", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+              finish();
+            }
+        });
+        //negative feed back
+        builder.setNegativeButton("המשך כאורח", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
 
