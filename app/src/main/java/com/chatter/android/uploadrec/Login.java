@@ -3,6 +3,7 @@ package com.chatter.android.uploadrec;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Login extends Activity {
         private LoginButton loginButton;
@@ -73,26 +77,46 @@ public class Login extends Activity {
 
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
-                public void onSuccess(LoginResult loginResult)
+                public void onSuccess(final LoginResult loginResult)
                 {
-                    AccessToken accessToken = loginResult.getAccessToken();
-                    Profile profile = Profile.getCurrentProfile();
+                    GraphRequest request = GraphRequest.newMeRequest(
+                            loginResult.getAccessToken(),
+                            new GraphRequest.GraphJSONObjectCallback() {
+                                public String Name;
 
-                   /* if(fireBase contains this userId)
-                        { Intent i = new Intent(Login.this, HomePage.class);
-                            startActivity(i);} */
-
-                    if (profile == null) {
-                        Toast.makeText(Login.this, "profile is null", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),profile.getName(),"userImg",0);
-                        umUser.saveUser();
-                        Intent i = new Intent(Login.this, HomePage.class);
-                        startActivity(i);
-                    }
-
+                                @Override
+                                public void onCompleted(JSONObject object, GraphResponse response) {
+                                    try {
+                                        Name = object.getString("name");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Toast.makeText(Login.this, "Name : " + Name, Toast.LENGTH_LONG).show();
+                                    //___________________________________
+                                    new AsyncTask<Void,Void,Void>()
+                                    {
+                                        @Override
+                                        protected void onPreExecute() {
+                                            super.onPreExecute();
+                                        }
+                                        @Override
+                                        protected void onPostExecute(Void aVoid) {
+                                            super.onPostExecute(aVoid);
+                                            Intent i = new Intent(Login.this, HomePage.class);
+                                            startActivity(i);
+                                        }
+                                        @Override
+                                        protected Void doInBackground(Void... params)
+                                        {
+                                            UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),Name,"userImg",0);
+                                            umUser.saveUser();
+                                            return null;
+                                        }
+                                    }.execute();
+                                    //___________________________________
+                                }
+                            });
+                    request.executeAsync();
                 }
 
                 @Override
