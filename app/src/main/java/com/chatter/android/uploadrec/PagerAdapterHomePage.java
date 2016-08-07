@@ -2,6 +2,7 @@ package com.chatter.android.uploadrec;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 
@@ -14,10 +15,12 @@ import com.chatter.android.uploadrec.fragmentsOfHomePage.ProgSearch;
 /**
  * Created by Eylon Yizhack on 7/31/2016.
  */
-public class PagerAdapterHomePage extends PagerAdapter {
+public class PagerAdapterHomePage extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PagerAdapterHomePage(FragmentManager fm , int numOfTabs) {
+    public PagerAdapterHomePage(FragmentManager fm , int numOfTabs)
+    {
+        super(fm);
         this.mNumOfTabs=numOfTabs;
     }
 
@@ -47,7 +50,7 @@ public class PagerAdapterHomePage extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return mNumOfTabs;
     }
 
     @Override
