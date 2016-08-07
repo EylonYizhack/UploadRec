@@ -1,11 +1,18 @@
 package com.chatter.android.uploadrec;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,27 +21,33 @@ import com.chatter.android.uploadrec.fragments.Details;
 import com.chatter.android.uploadrec.fragments.Ingredientsf;
 import com.chatter.android.uploadrec.fragments.Processf;
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
+import com.chatter.android.uploadrec.utilClasses.User;
+import com.facebook.AccessToken;
+import com.facebook.Profile;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity
 {
     FragmentTransaction ft;
     FragmentManager fm;
+    ProgressDialog dialog;
     Button detailsBtn;
     Button ingredientsBtn;
     Button processBtn;
     Button mSave;
-
     Details myFragD;
     Ingredientsf myFragI;
     Processf myFragP;
 
     Context context;
+
     String recName;
     String timeTillDone;
     String recCategory;
     String recPeople;
+    String recHezka;
     String recWorth;
     String recLvl;
     String recHollyday;
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
@@ -61,16 +75,54 @@ public class MainActivity extends AppCompatActivity
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
             recCategory=myFragD.getDetailsCategory();
             recPeople = myFragD.getDetailsPeople();
+            recHezka = myFragD.getDetailsHezka();
             recWorth = myFragD.getDetailsWorth();
             recLvl = myFragD.getDetailsLvl();
             recHollyday = myFragD.getDetailsHollyday();
             recHalfy = myFragD.getDetailsHalfy();
             ingList = myFragI.getIngList();
             process = myFragP.getProcess();
+
+                new AsyncTask<Void,Void,Void>()
+                {
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        dialog=new ProgressDialog(context);
+                        dialog.setMessage("שומר את המתכון " +  recName);
+                        dialog.setIndeterminate(true);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    }
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        super.onPostExecute(aVoid);
+                        Toast.makeText(MainActivity.this,"נשמר מתכון חדש",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        finish();
+                    }
+                    @Override
+                    protected Void doInBackground(Void... params)
+                    {
+                        try {
+                            Thread.sleep(2000);
+                            //if the device is connected to the internet
+                            //if enable to connect the server
+                            UsersMatconim umRec = new UsersMatconim(getUuid(),"Eylon",getUuid(),recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            umRec.saveMatcon();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                }.execute();
 
             }
         });
@@ -90,12 +142,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickIngredients(View v)
     {
-        if(myFragD.getDetailsName().equals("") || myFragD.getTimeTillDone().equals("") || myFragD.getDetailsCategory().equals("") || myFragD.getDetailsPeople().equals("")
-                || myFragD.getDetailsWorth().equals("") || myFragD.getDetailsLvl().equals("") || myFragD.getDetailsHollyday().equals("") || myFragD.getDetailsHalfy().equals(""))
-        {
-            Toast.makeText(context,"יש למלא את כל השדות",Toast.LENGTH_SHORT).show();
-        }
-        else {
+
             //load fragment 2
             ft = fm.beginTransaction();
             myFragI = new Ingredientsf();
@@ -104,17 +151,10 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
             detailsBtn.setText("V");
             detailsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
-
-        }
     }
 
     public void onClickProcess(View v)
     {
-        /*if (myFragI.getIngList().get(0)==null)
-        {
-            Toast.makeText(context,"אנא עקוב אחרי השלבים",Toast.LENGTH_SHORT).show();
-        }
-        else {*/
             ingredientsBtn.setText("V");
             ingredientsBtn.setBackgroundColor(Color.parseColor("#FAA039"));
                 //load fragment 3
@@ -126,4 +166,41 @@ public class MainActivity extends AppCompatActivity
 
      }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater =  getMenuInflater();   // ma ze ose?
+        inflater.inflate(R.menu.mainmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.GoogleLogin:
+                Toast.makeText(this,"google",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.About:
+                Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Logout:
+                Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private String getUuid()
+    {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
 }
+//Profile.getCurrentProfile().getName().toString()
+//AccessToken.getCurrentAccessToken().getUserId()
