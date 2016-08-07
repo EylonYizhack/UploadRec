@@ -75,10 +75,8 @@ public class Picturef extends Fragment {
             if (imgFile.exists()) {
                 myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
-
             }
         }
-
     }
 
 
