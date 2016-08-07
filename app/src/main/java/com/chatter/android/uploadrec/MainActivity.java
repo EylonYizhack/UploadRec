@@ -31,6 +31,8 @@ import com.chatter.android.uploadrec.utilClasses.Ingredients;
 import com.chatter.android.uploadrec.utilClasses.User;
 import com.facebook.AccessToken;
 import com.facebook.Profile;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,9 +53,7 @@ public class MainActivity extends AppCompatActivity
     Picturef myFragPic;
     Ingredientsf myFragI;
     Processf myFragP;
-
     Context context;
-
     String recName;
     String timeTillDone;
     String recCategory;
@@ -126,14 +126,11 @@ public class MainActivity extends AppCompatActivity
                             Thread.sleep(2000);
                             UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
-                            //______LIRAN_________
-                            //give +3 points to the user and update his prifile on firebase
-                           /* UsersMatconim umUser = null;
-                            String userID = Profile.getCurrentProfile().getId();
-                            Map<String,Object> taskMap = new HashMap<String,Object>();
-                            taskMap.put("userScore",User.getCureentScore + 3);
-                            taskRef.updateChildren(taskMap);
-                            */
+
+                            FirebaseDatabase fb = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = fb.getReference("User");
+                            myRef.child("10206362204083242").child("userScore").setValue(3);
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
