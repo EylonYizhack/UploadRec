@@ -61,8 +61,6 @@ public class HomePage extends AppCompatActivity {
                 }
             });
         }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

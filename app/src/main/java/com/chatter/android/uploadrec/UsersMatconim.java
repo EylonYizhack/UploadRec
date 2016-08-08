@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UsersMatconim {
     String recName, timeTillDone, category, people, worth, lvl, hollyday, halfy, process, hezka,recId , userImg, recImg;
-    int userScore;
+    int userScore,recRate;
     List<Ingredients> ingList = new ArrayList<>();
     Context context;
     String userId;
@@ -29,11 +29,12 @@ public class UsersMatconim {
         this.userScore = userScore;
     }
 
-    public UsersMatconim(String userId,String userName,String recId,String recName, String timeTillDone,String recImg, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
+    public UsersMatconim(String userId,String userName,String recId,String recName,int recRate, String timeTillDone,String recImg, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
         this.recId=recId;
         this.hezka = hezka;
         this.ingList = ingList;
         this.recName = recName;
+        this.recRate=recRate;
         this.recImg = recImg;
         this.timeTillDone = timeTillDone;
         this.category = category;
@@ -59,7 +60,7 @@ public class UsersMatconim {
     }
 
     public void saveMatcon() {
-        UsersMatconim userSm = new UsersMatconim(userId,userName,recId,recName, timeTillDone,recImg, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
+        UsersMatconim userSm = new UsersMatconim(userId,userName,recId,recName,recRate, timeTillDone,recImg, category, people, hezka, worth, lvl, hollyday, halfy, ingList, process);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myMref=database.getReference("Matconim DB list");
 
