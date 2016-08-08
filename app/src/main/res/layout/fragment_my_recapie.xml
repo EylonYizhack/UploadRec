@@ -5,9 +5,28 @@
     tools:context="com.chatter.android.uploadrec.fragmentsOfHomePage.MyRecapie">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="חפש במתכונים שלי"
+            android:id="@+id/btn2"
+            android:onClick="onclick"
+            android:gravity="center"
+            />
+        <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listOfRecBestTen"
+            android:textDirection="rtl"
+            android:layoutDirection="rtl">
+        </ExpandableListView>
+
+
+    </LinearLayout>
 
 </FrameLayout>

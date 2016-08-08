@@ -5,10 +5,26 @@
     tools:context="com.chatter.android.uploadrec.fragmentsOfHomePage.Favorites">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="favorites"
-        android:textSize="50sp"/>
+        android:orientation="vertical">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="חפש במועדפים"
+        android:id="@+id/btn2"
+        android:onClick="onclick"
+        android:gravity="center"
+        />
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listOfRecFavorites"
+        android:textDirection="rtl"
+        android:layoutDirection="rtl">
+    </ExpandableListView>
+
+    </LinearLayout>
 </FrameLayout>

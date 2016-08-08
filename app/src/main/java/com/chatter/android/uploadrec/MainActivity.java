@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         pictureBtn=(Button)findViewById(R.id.pictureBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
