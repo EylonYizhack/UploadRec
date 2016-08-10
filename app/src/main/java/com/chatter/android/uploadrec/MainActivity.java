@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,8 +32,11 @@ import com.chatter.android.uploadrec.utilClasses.Ingredients;
 import com.chatter.android.uploadrec.utilClasses.User;
 import com.facebook.AccessToken;
 import com.facebook.Profile;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,15 +56,18 @@ public class MainActivity extends AppCompatActivity
     Context context;
     String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process;
     List<Ingredients> ingList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         pictureBtn=(Button)findViewById(R.id.pictureBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
         this.context=this;
+
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         myFragD=new Details();
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
             recCategory=myFragD.getDetailsCategory();
@@ -108,17 +116,27 @@ public class MainActivity extends AppCompatActivity
                             UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
                             FirebaseDatabase fb = FirebaseDatabase.getInstance();
-                            int usScore;
-                            DatabaseReference myRef = fb.getReference("User");
 
+                            final DatabaseReference myRef;
 
-                            myRef.child(Profile.getCurrentProfile().getId()).child("userScore");
+                            Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
+                            myRef= fb.getReference("User").child(Profile.getCurrentProfile().getId()).child("userScore");
 
+                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    myRef.setValue(Integer.parseInt((String) dataSnapshot.getValue())+3);
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                }
+                            });
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                         return null;
                     }
+
                 }.execute();
 
             }
@@ -207,9 +225,12 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private String getUuid()
     {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
+
 }
