@@ -49,7 +49,7 @@ public class Login extends Activity {
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
-        //updateWithToken(AccessToken.getCurrentAccessToken());
+        updateWithToken(AccessToken.getCurrentAccessToken());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

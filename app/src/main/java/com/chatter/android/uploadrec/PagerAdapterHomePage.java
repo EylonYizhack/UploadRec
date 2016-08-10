@@ -31,13 +31,13 @@ public class PagerAdapterHomePage extends FragmentStatePagerAdapter {
                 BestTen tab1 = new BestTen();
                 return tab1;
             case 1:
-                HomeFood tab2 = new HomeFood();
+                Favorites tab2 = new Favorites();
                 return tab2;
             case 2:
-                ProgSearch tab3 = new ProgSearch();
+                HomeFood tab3 = new HomeFood();
                 return tab3;
             case 3:
-                Favorites tab4 = new Favorites();
+                ProgSearch tab4 = new ProgSearch();
                 return tab4;
             case 4:
                 MyRecapie tab5 = new MyRecapie();
@@ -53,8 +53,5 @@ public class PagerAdapterHomePage extends FragmentStatePagerAdapter {
         return mNumOfTabs;
     }
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return false;
-    }
+
 }

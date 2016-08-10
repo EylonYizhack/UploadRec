@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         processBtn=(Button)findViewById(R.id.processBtn);
         this.context=this;
 
-
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         myFragD=new Details();
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity
 
                 new AsyncTask<Void,Void,Void>()
                 {
-
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
