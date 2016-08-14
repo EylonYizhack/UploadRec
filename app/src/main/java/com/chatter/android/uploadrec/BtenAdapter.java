@@ -65,7 +65,7 @@ public class BtenAdapter extends BaseAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
-                    Log.e("TEST", "onDataChange: "+recivedRec.recName );
+                    Log.e("TEST", "onDataChange0: "+recivedRec.recName );
                     myList1.add(recivedRec.recName);
                 }
                 notifyDataSetChanged();
