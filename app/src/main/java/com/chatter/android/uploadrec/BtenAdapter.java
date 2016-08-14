@@ -70,7 +70,7 @@ public class BtenAdapter extends BaseAdapter {
                 }
                 notifyDataSetChanged();
             }
-
+//abc
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
