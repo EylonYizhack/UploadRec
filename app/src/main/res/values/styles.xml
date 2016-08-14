@@ -10,6 +10,7 @@
         <item name="android:textColorPrimaryInverse">
             @color/abc_primary_text_disable_only_material_light
         </item>
+        <item name="android:textColorPrimary">@color/abc_search_url_text_pressed</item>
     </style>
 
 </resources>

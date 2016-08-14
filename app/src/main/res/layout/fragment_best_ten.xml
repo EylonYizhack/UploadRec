@@ -18,13 +18,13 @@
         android:onClick="onclick"
         android:gravity="center"
         />
-    <ExpandableListView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listOfRecBestTen"
+        android:id="@+id/myList"
         android:textDirection="rtl"
         android:layoutDirection="rtl">
-    </ExpandableListView>
+    </ListView>
 
 
     </LinearLayout>
