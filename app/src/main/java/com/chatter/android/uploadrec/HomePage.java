@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.design.widget.*;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,10 +22,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Profile;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
 
-        static Context context;
+        String userScore;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -60,7 +66,11 @@ public class HomePage extends AppCompatActivity {
 
                 }
             });
+            //
+            userScorePresent();
+            //
         }
+    //______________________________________________________________________________________________
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -68,7 +78,7 @@ public class HomePage extends AppCompatActivity {
         inflater.inflate(R.menu.mainmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //______________________________________________________________________________________________
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -92,8 +102,7 @@ public class HomePage extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
+    //______________________________________________________________________________________________
 //if the user try to upload recpie without beeing logged
     private void dlgFecbookConect()
     {
@@ -119,8 +128,25 @@ public class HomePage extends AppCompatActivity {
         });
         builder.show();
     }
-
-
+    //______________________________________________________________________________________________
+    public void userScorePresent()  //give the user current score value
+    {
+        FirebaseDatabase fb = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef;
+        Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
+        myRef= fb.getReference("User").child(Profile.getCurrentProfile().getId()).child("userScore");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userScore=dataSnapshot.getValue().toString();
+                Toast.makeText(HomePage.this, "you have "+userScore+" points", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+    //______________________________________________________________________________________________
 }
 
 
