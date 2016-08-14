@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,9 @@ public class BestTen extends Fragment {
     ListView myList;
    // List<UsersMatconim> matconList;
 
-
     public BestTen() {
         // Required empty public constructor
     }
-
 
     @Nullable
     @Override
@@ -50,6 +49,7 @@ public class BestTen extends Fragment {
         myList=(ListView)viewList.findViewById(R.id.myList);
         BtenAdapter ad =new BtenAdapter(context);
         myList.setAdapter(ad);
+
         return viewList;
 
     }

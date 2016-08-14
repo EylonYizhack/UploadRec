@@ -11,6 +11,7 @@ public class Ingredients {
     String Ing;
     Context context;
 
+    public Ingredients() {}
     public Ingredients(String numAmount, String amount, String ing) {
         this.numAmount = numAmount;
         this.amount = amount;

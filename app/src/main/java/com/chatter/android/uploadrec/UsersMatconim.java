@@ -21,7 +21,7 @@ public class UsersMatconim {
     String userId;
     String userName;
 
-
+    public UsersMatconim() {}
     public UsersMatconim(String userId, String userName, String userImg , int userScore) {
         this.userName = userName;
         this.userId = userId;

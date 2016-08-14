@@ -1,5 +1,6 @@
 package com.chatter.android.uploadrec;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,7 @@ public class BtenAdapter extends BaseAdapter {
     public BtenAdapter(Context context)
     {
         this.context = context;
-        myList1 = new ArrayList();
+
         getData();
     }
 
@@ -47,32 +48,44 @@ public class BtenAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        /*
+        LinearLayout ll = new LinearLayout(context);
+        TextView rec_name =new TextView(context);
+        rec_name.setText(myList1.get(position));
+
+        ll.addView(rec_name);
+        return ll;
+        */
         TextView rec_name =new TextView(context);
         rec_name.setText(myList1.get(position));
         return rec_name;
-
     }
 
 
-    private void getData()
+    public void getData()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myref = database.getReference("Matconim Db list");
-
-        //thread
+        myList1 = new ArrayList();
+        final ProgressDialog pd = new ProgressDialog(context);
+        pd.setTitle("loading");
+        pd.setMessage("loading matkonim");
+        pd.show();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myref = database.getReference("Matconim DB list");
         myref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
-                    Log.e("TEST", "onDataChange0: "+recivedRec.recName );
+                    Log.e("TEST", "onDataChange: "+recivedRec.recName );
                     myList1.add(recivedRec.recName);
                 }
                 notifyDataSetChanged();
+                pd.dismiss();
             }
-//abc
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(context,"couldnt show data",Toast.LENGTH_SHORT).show();
 
             }
         });
