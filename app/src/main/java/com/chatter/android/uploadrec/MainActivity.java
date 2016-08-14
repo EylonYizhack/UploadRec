@@ -44,39 +44,23 @@ public class MainActivity extends AppCompatActivity
     FragmentTransaction ft;
     FragmentManager fm;
     ProgressDialog dialog;
-    Button detailsBtn;
-    Button pictureBtn;
-    Button ingredientsBtn;
-    Button processBtn;
-    Button mSave;
+    Button detailsBtn,pictureBtn,ingredientsBtn,processBtn,mSave;
     Details myFragD;
     Picturef myFragPic;
     Ingredientsf myFragI;
     Processf myFragP;
     Context context;
-    String recName;
-    String timeTillDone;
-    String recCategory;
-    String recPeople;
-    String recHezka;
-    String recWorth;
-    String recLvl;
-    String recHollyday;
-    String recHalfy;
+    String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process;
     List<Ingredients> ingList;
-    String process;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         pictureBtn=(Button)findViewById(R.id.pictureBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
         this.context=this;
-
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         myFragD=new Details();
@@ -86,7 +70,6 @@ public class MainActivity extends AppCompatActivity
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
             recCategory=myFragD.getDetailsCategory();
@@ -122,19 +105,20 @@ public class MainActivity extends AppCompatActivity
                     {
                         try {
                             Thread.sleep(2000);
-                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
-
                             FirebaseDatabase fb = FirebaseDatabase.getInstance();
+                            int usScore;
                             DatabaseReference myRef = fb.getReference("User");
-                            myRef.child("10206362204083242").child("userScore").setValue(3);
+
+
+                            myRef.child(Profile.getCurrentProfile().getId()).child("userScore");
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                         return null;
                     }
-
                 }.execute();
 
             }
@@ -223,14 +207,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
     private String getUuid()
     {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
-
 }
-//Profile.getCurrentProfile().getName().toString()
-//AccessToken.getCurrentAccessToken().getUserId()
