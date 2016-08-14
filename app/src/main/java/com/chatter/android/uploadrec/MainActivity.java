@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity
     Ingredientsf myFragI;
     Processf myFragP;
     Context context;
-    String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process,userScore;
+    int userScore;
+    String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process;
     List<Ingredients> ingList;
 //__________________________________________________________________________________________________
     @Override
@@ -67,9 +68,6 @@ public class MainActivity extends AppCompatActivity
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
         this.context=this;
-        Toast.makeText(MainActivity.this," לרשותך"+userScore+" נקודות!",Toast.LENGTH_SHORT).show();//*****
-
-
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         myFragD=new Details();
@@ -91,8 +89,6 @@ public class MainActivity extends AppCompatActivity
             recHalfy = myFragD.getDetailsHalfy();
             ingList = myFragI.getIngList();
             process = myFragP.getProcess();
-            userScore = getUserScore();
-
                 new AsyncTask<Void,Void,Void>()
                 {
                     @Override
@@ -110,31 +106,17 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(MainActivity.this,"נשמר מתכון חדש",Toast.LENGTH_SHORT).show();
                        // Toast.makeText(MainActivity.this," לרשותך"+userScore+" נקודות!",Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                        uptadeUserScore();
                         finish();
                     }
                     @Override
                     protected Void doInBackground(Void... params)
                     {
                         try {
-                            Thread.sleep(2000);
                             UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
-                            FirebaseDatabase fb = FirebaseDatabase.getInstance();
-                            final DatabaseReference myRef;
-
-                            Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
-                            myRef= fb.getReference("User").child(Profile.getCurrentProfile().getId()).child("userScore");
-
-                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    myRef.setValue((Integer.parseInt(userScore)+3));
-                                }
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                }
-                            });
-                        } catch (InterruptedException e) {
+                            //Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                         return null;
@@ -200,7 +182,7 @@ public class MainActivity extends AppCompatActivity
 
      }
 //__________________________________________________________________________________________________
-    public String getUserScore()
+    public void uptadeUserScore()
     {
         FirebaseDatabase fb = FirebaseDatabase.getInstance();
         final DatabaseReference myRef;
@@ -209,13 +191,15 @@ public class MainActivity extends AppCompatActivity
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                userScore = (String) dataSnapshot.getValue();
+
+                myRef.setValue(Integer.parseInt(dataSnapshot.getValue().toString())+3);
+                userScore=(Integer.parseInt(dataSnapshot.getValue().toString())+3);
+                Toast.makeText(MainActivity.this, "you have "+userScore+" points", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        return userScore;
     }
 //__________________________________________________________________________________________________
     @Override
