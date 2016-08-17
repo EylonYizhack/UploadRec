@@ -2,6 +2,7 @@ package com.chatter.android.uploadrec;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class BtenAdapter extends BaseAdapter {
     Context context;
-    List<String> myList1;
+    List<UsersMatconim> matconList;
     public BtenAdapter(Context context)
     {
         this.context = context;
@@ -33,7 +34,7 @@ public class BtenAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return myList1.size();
+        return matconList.size();
     }
 
     @Override
@@ -48,23 +49,27 @@ public class BtenAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        /*
         LinearLayout ll = new LinearLayout(context);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+        ll.setPadding(20,40,20,40);
         TextView rec_name =new TextView(context);
-        rec_name.setText(myList1.get(position));
+        rec_name.setTypeface(null, Typeface.BOLD);
+        rec_name.setTextSize(18);
+        rec_name.setText((matconList.get(position).recName)+" ("+(matconList.get(position).timeTillDone)+" דק'"+")");
+
+        TextView subTitles = new TextView(context);
+        subTitles.setText((matconList.get(position).category)+","+(matconList.get(position).hezka)+","+(matconList.get(position).halfy)+","+(matconList.get(position).lvl)+","+(matconList.get(position).worth));
 
         ll.addView(rec_name);
+        ll.addView(subTitles);
         return ll;
-        */
-        TextView rec_name =new TextView(context);
-        rec_name.setText(myList1.get(position));
-        return rec_name;
     }
 
 
     public void getData()
     {
-        myList1 = new ArrayList();
+        matconList = new ArrayList();
         final ProgressDialog pd = new ProgressDialog(context);
         pd.setTitle("loading");
         pd.setMessage("loading matkonim");
@@ -78,7 +83,7 @@ public class BtenAdapter extends BaseAdapter {
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
                     Log.e("TEST", "onDataChange: "+recivedRec.recName );
-                    myList1.add(recivedRec.recName);
+                    matconList.add(recivedRec);
                 }
                 notifyDataSetChanged();
                 pd.dismiss();
