@@ -41,11 +41,11 @@ public class HomePage extends AppCompatActivity {
             setSupportActionBar(toolbar);
 
             final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu).setText("רשימה"));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating).setText("מועדפים"));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge).setText("עם "));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter).setText("סינון מתקדם"));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook).setText("המתכונים שלי"));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook));
 
             tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
             tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
