@@ -1,15 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#C91400</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">#070505</item>
         <item name="android:windowBackground">@color/background_material_light</item>
-        <item name="android:textColorPrimaryInverse">
-            @color/abc_primary_text_disable_only_material_light
-        </item>
         <item name="android:textColorPrimary">@color/abc_search_url_text_pressed</item>
     </style>
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">

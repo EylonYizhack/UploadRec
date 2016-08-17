@@ -30,12 +30,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
-
+        Toolbar toolbar;
         String userScore;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home_page);
+
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
             final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
             tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu).setText("רשימה"));
