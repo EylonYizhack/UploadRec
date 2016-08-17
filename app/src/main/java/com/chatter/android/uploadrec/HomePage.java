@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -36,12 +37,12 @@ public class HomePage extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home_page);
 
-            TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook));
+            final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu).setText("רשימה"));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating).setText("מועדפים"));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge).setText("עם "));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter).setText("סינון מתקדם"));
+            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook).setText("המתכונים שלי"));
 
             tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
             tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -56,19 +57,13 @@ public class HomePage extends AppCompatActivity {
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
                 }
-
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
                 }
-
                 @Override
                 public void onTabReselected(TabLayout.Tab tab) {
-
                 }
             });
-            //
-            userScorePresent();
-            //
         }
     //______________________________________________________________________________________________
     @Override

@@ -12,13 +12,14 @@
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:id="@+id/tab_layout"
         android:background="#C91400"
         android:elevation="6dp"
         android:layoutDirection="rtl"
         android:textDirection="rtl"
         />
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
