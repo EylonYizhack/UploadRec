@@ -12,7 +12,7 @@
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
         <item name="tabBackground">@drawable/tab_background</item>
         <item name="tabIndicatorColor">#ffffff</item>
-        <item name="tabIndicatorHeight">6dp</item>
+        <item name="tabIndicatorHeight">8dp</item>
     </style>
 
     <style name="cookittheme" parent="Theme.AppCompat.Light.NoActionBar" >
