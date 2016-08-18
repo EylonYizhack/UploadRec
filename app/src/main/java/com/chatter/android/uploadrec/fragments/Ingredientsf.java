@@ -96,7 +96,7 @@ public class Ingredientsf extends Fragment {
         final LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = vi.inflate(R.layout.custom_listview, null);
         ListView lst = (ListView)view.findViewById(R.id.cusAmountList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,listOfAmount);;
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,listOfAmount);
         lst.setAdapter(adapter);
         bldr.setView(view);
         lst.setClickable(true);
