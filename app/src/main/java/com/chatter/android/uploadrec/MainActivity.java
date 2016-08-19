@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     Processf myFragP;
     Context context;
     int userScore;
-    String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process;
+    String recName,timeTillDone,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,process,recImg;
     List<Ingredients> ingList;
 //__________________________________________________________________________________________________
     @Override
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
+            recImg=myFragPic.getPicture();
             recCategory=myFragD.getDetailsCategory();
             recPeople = myFragD.getDetailsPeople();
             recHezka = myFragD.getDetailsHezka();
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                     protected Void doInBackground(Void... params)
                     {
                         try {
-                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,"RecImg",recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,recImg,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
                             //Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
                         } catch (Exception e) {

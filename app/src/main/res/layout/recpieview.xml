@@ -4,216 +4,220 @@
     android:layout_height="match_parent"
     android:textDirection="rtl"
     android:layoutDirection="rtl"
-    android:weightSum="1"
-    android:background="#9E0202">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="#9E0202"
-           android:weightSum="1">
-           <LinearLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:orientation="vertical"
-               android:weightSum="1"></LinearLayout>
-           <Button
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:id="@+id/addToFavoritesBtn"
-               android:layout_alignParentTop="true"
-               android:layout_toEndOf="@+id/ShareOnFacebookBtn"
-               android:background="@drawable/addtofav"/>
-           <Button
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:id="@+id/ShareOnFacebookBtn"
-               android:layout_alignParentTop="true"
-               android:background="@drawable/facebooksharebtn"
-               />
-           <Button
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:id="@+id/LikeBtn"
-               android:layout_alignParentTop="true"
-               android:background="@drawable/likebtn"
-               android:layout_toEndOf="@+id/addToFavoritesBtn" />
-
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/tvName"
-               android:gravity="center"
-               android:textSize="30sp"
-               android:fontFamily="@string/com_facebook_share_button_text"
-               android:background="#9E0202"
-               android:textColor="#ffffff"
-               android:layout_centerVertical="true"
-               android:layout_centerHorizontal="true" />
-       </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/food" />
+    android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:weightSum="1">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layoutDirection="rtl"
             android:textDirection="rtl"
-            android:id="@+id/linearLayout2"
-            android:layout_weight="1"
-            android:background="#9E0202">
-
+            android:layoutDirection="rtl"
+            android:layout_weight="0.98">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvName"
+                android:gravity="center"
+                android:typeface="serif"
+                android:textSize="25sp"
+                android:fontFamily="@string/com_facebook_share_button_text"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.92" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvUserName"
                 android:textSize="15sp"
                 android:typeface="sans"
-                android:textColor="#ffffff"
-                android:background="#9E0202"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCategory"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvLvl"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvPeople"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvWorth"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvHollyday"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvHezka"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvHalfy"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvTimeTillDone"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-
                 />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layoutDirection="rtl"
-            android:textDirection="rtl"
-            android:background="#9E0202">
-
-            <TextView
-                android:layout_width="178dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvIngredients"
-                android:textSize="20sp"
-                android:typeface="sans"
-                android:text="רשימת המצרכים"
-                android:background="#9E0202"
-                android:textColor="#ffffff"
-                />
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layoutDirection="rtl"
-                android:textDirection="rtl"
-                android:id="@+id/ListViewScrollIngredients">
-            </ListView>
-        </LinearLayout>
-
-
-
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/addToFavoritesBtn"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/ShareOnFacebookBtn"
+            android:background="@drawable/addtofav"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ShareOnFacebookBtn"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/facebooksharebtn"
+            />
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/LikeBtn"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/likebtn"
+            android:layout_toEndOf="@+id/addToFavoritesBtn" />
     </LinearLayout>
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layoutDirection="rtl"
-        android:textDirection="rtl"
-        android:background="#9E0202"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvProccessPresentetion"
-            android:textSize="20sp"
-            android:typeface="sans"
-            android:text="תהליך ההכנה"
-            android:textColor="#ffffff"
-            />
-        <ScrollView
+        android:background="@drawable/notebook1">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/food" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvProccess"
-                android:textSize="15sp"
-                android:typeface="sans"
-                android:textColor="#ffffff"
-                />
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-        </ScrollView>
+                <LinearLayout
+                    android:layout_width="169dp"
+                    android:layout_height="188dp"
+                    android:orientation="vertical"
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl"
+                    android:id="@+id/linearLayout2"
+                    android:layout_weight="0.91">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="פרטים"
+                        android:textSize="20sp"
+                        android:id="@+id/tvDetailsPresentation"
+                       />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvCategory"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvLvl"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvPeople"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvWorth"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvHollyday"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvHezka"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvHalfy"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvTimeTillDone"
+                        android:textSize="15sp"
+                        android:typeface="sans"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="158dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl"
+                >
+
+                    <TextView
+                        android:layout_width="162dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvIngredients"
+                        android:textSize="20sp"
+                        android:typeface="sans"
+                        android:text="רשימת המצרכים"
+                        />
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="174dp"
+                        android:layoutDirection="rtl"
+                        android:textDirection="rtl"
+                        android:id="@+id/ListViewScrollIngredients">
+                    </ListView>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layoutDirection="rtl"
+                android:textDirection="rtl"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProccessPresentetion"
+                    android:textSize="20sp"
+                    android:typeface="sans"
+                    android:text="תהליך ההכנה"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProccess"
+                    android:textSize="15sp"
+                    android:typeface="sans"
+                    />
 
 
-    </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
 </LinearLayout>
 

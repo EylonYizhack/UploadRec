@@ -82,7 +82,7 @@ public class BtenAdapter extends BaseAdapter {
         return ll;
     }
 
-    public void setInflater(Context context, int position)
+    public void setInflater(final Context context, final int position)
     {
         final AlertDialog bldr = new AlertDialog.Builder(context).create();
         final LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,9 +90,12 @@ public class BtenAdapter extends BaseAdapter {
         //Recpie name
         TextView tvName = (TextView)view.findViewById(R.id.tvName);
         tvName.setText(matconList.get(position).recName);
+        tvName.setTypeface(Typeface.DEFAULT_BOLD);
         //LinearLayout details presentation
+        TextView tvDetailsPres = (TextView)view.findViewById(R.id.tvDetailsPresentation);
+        tvDetailsPres.setTypeface(Typeface.DEFAULT_BOLD);
         TextView tvUserName = (TextView)view.findViewById(R.id.tvUserName);
-        tvUserName.setText("מאת: "+matconList.get(position).userName);
+        tvUserName.setText("מאת: "+matconList.get(position).userName +"("+matconList.get(position).userScore+" נק"+")");
         TextView tvCategory = (TextView)view.findViewById(R.id.tvCategory);
         tvCategory.setText("סוג: "+matconList.get(position).category);
         TextView tvLvl = (TextView)view.findViewById(R.id.tvLvl);
@@ -110,14 +113,28 @@ public class BtenAdapter extends BaseAdapter {
         TextView tvHalfy  = (TextView)view.findViewById(R.id.tvHalfy);
         tvHalfy.setText(matconList.get(position).halfy);
         //List of ingredients
+        TextView tvIngPres = (TextView) view.findViewById(R.id.tvIngredients);
+        tvIngPres.setTypeface(Typeface.DEFAULT_BOLD);
         ListView lvIngredients = (ListView)view.findViewById(R.id.ListViewScrollIngredients);
         IngListAdapterPresentation IlaP = new IngListAdapterPresentation(context, matconList.get(position).ingList);
         lvIngredients.setAdapter(IlaP);
         //Process
-        TextView tvProcess  = (TextView)view.findViewById(R.id.tvProccess);
+        TextView tvProcessPres  = (TextView)view.findViewById(R.id.tvProccessPresentetion);
+        tvProcessPres.setTypeface(Typeface.DEFAULT_BOLD);
+        final TextView tvProcess  = (TextView)view.findViewById(R.id.tvProccess);
         tvProcess.setText(matconList.get(position).process);
-
-
+        tvProcess.setTextSize(12);
+        //buttons
+       /* final Button likeButtton =(Button)view.findViewById(R.id.LikeBtn);
+        likeButtton.setText(""+matconList.get(position).recRate);
+        likeButtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //updateRecRate(matconList.get(position).recId);
+                likeButtton.setText(""+((matconList.get(position).recRate)+1));
+            }
+        });
+*/
         bldr.setView(view);
         bldr.show();
     }
@@ -147,5 +164,24 @@ public class BtenAdapter extends BaseAdapter {
             }
         });
     }
+/*
+    private void updateRecRate(String recId)
+    {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myref1 = database.getReference("Matconim DB list").child(recId).child("recRate");
+        myref1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+               // myref1.setValue(Integer.parseInt(dataSnapshot.getValue().toString())+3);
+                //notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(context,"couldnt show data",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }*/
 
 }

@@ -55,15 +55,12 @@ public class IngListAdapterPresentation extends BaseAdapter {
         TextView tvAmountNum = new TextView(context);
         tvAmountNum.setText(inglist.get(position).numAmount + " ");
         tvAmountNum.setTextSize(15);
-        tvAmountNum.setTextColor(Color.WHITE);
         final TextView tvAmount = new TextView(context);
         tvAmount.setText(inglist.get(position).amount  + " ");
         tvAmount.setTextSize(15);
-        tvAmount.setTextColor(Color.WHITE);
         TextView tvIng = new TextView(context);
         tvIng.setText(inglist.get(position).Ing  + " ");
         tvIng.setTextSize(15);
-        tvIng.setTextColor(Color.WHITE);
         Llayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         Llayout.addView(tvAmountNum);
         Llayout.addView(tvAmount);

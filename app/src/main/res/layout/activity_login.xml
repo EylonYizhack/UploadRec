@@ -29,12 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="OR" />
+        android:text="או"
+        android:textSize="20sp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in as guest"
+        android:text="המשך כאורח"
         android:gravity="center"
         android:id="@+id/guest"
         android:layout_gravity="center"

@@ -104,4 +104,9 @@ public class Picturef extends Fragment {
         });
         builder.show();
     }
+
+    public String getPicture()
+    {
+        return myImage.toString();
+    }
 }

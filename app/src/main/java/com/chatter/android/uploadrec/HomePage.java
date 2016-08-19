@@ -83,13 +83,13 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.GoogleLogin:
-                if(Profile.getCurrentProfile()==null)
+            /*    if(Profile.getCurrentProfile()==null)
                 {
                     dlgFecbookConect();
                 }
                 else
-                {Intent i = new Intent(HomePage.this,MainActivity.class);
-                    startActivity(i);}
+                {*/Intent i = new Intent(HomePage.this,MainActivity.class);
+                    startActivity(i);//}
                 break;
             case R.id.About:
                 Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();

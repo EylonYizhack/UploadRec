@@ -124,7 +124,7 @@ public class MyRecpieAdapter extends BaseAdapter {
         pd.show();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        final DatabaseReference myref = database.getReference("Matconim DB list");//.child(Profile.getCurrentProfile().getId());//***
+        final DatabaseReference myref = database.getReference("Matconim DB list");
         myref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
