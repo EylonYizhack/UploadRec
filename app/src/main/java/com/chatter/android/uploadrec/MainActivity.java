@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity
 
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
-            recImg=myFragPic.getPicture();
+            recImg=myFragPic.getPicture();//***
             recCategory=myFragD.getDetailsCategory();
             recPeople = myFragD.getDetailsPeople();
             recHezka = myFragD.getDetailsHezka();
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity
                     protected Void doInBackground(Void... params)
                     {
                         try {
-                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,recImg,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim("AccessToken.getCurrentAccessToken().getUserId()","Profile.getCurrentProfile().getName().toString()",getUuid(),recName,0,timeTillDone,recImg,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
                             //Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
                         } catch (Exception e) {

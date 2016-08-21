@@ -1,6 +1,8 @@
 package com.chatter.android.uploadrec;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersMatconim {
-    String recName, timeTillDone, category, people, worth, lvl, hollyday, halfy, process, hezka,recId , userImg, recImg;
+    String recName, timeTillDone, category, people, worth, lvl, hollyday, halfy, process, hezka,recId , userImg,recImg;
     int userScore,recRate;
     List<Ingredients> ingList = new ArrayList<>();
     Context context;
@@ -22,6 +24,7 @@ public class UsersMatconim {
     String userName;
 
     public UsersMatconim() {}
+
     public UsersMatconim(String userId, String userName, String userImg , int userScore) {
         this.userName = userName;
         this.userId = userId;
@@ -29,7 +32,7 @@ public class UsersMatconim {
         this.userScore = userScore;
     }
 
-    public UsersMatconim(String userId,String userName,String recId,String recName,int recRate, String timeTillDone,String recImg, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
+    public UsersMatconim(String userId, String userName, String recId, String recName, int recRate, String timeTillDone, String recImg, String category, String people, String hezka, String worth, String lvl, String hollyday, String halfy, List<Ingredients> ingList, String process) {
         this.recId=recId;
         this.hezka = hezka;
         this.ingList = ingList;

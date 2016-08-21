@@ -3,7 +3,10 @@ package com.chatter.android.uploadrec;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -91,6 +95,10 @@ public class BtenAdapter extends BaseAdapter {
         TextView tvName = (TextView)view.findViewById(R.id.tvName);
         tvName.setText(matconList.get(position).recName);
         tvName.setTypeface(Typeface.DEFAULT_BOLD);
+        //photo
+        ImageView ivRecImage = (ImageView) view.findViewById(R.id.ivRecImage);
+        Bitmap bmImg = BitmapFactory.decodeFile(matconList.get(position).recImg);
+        ivRecImage.setImageBitmap(bmImg);
         //LinearLayout details presentation
         TextView tvDetailsPres = (TextView)view.findViewById(R.id.tvDetailsPresentation);
         tvDetailsPres.setTypeface(Typeface.DEFAULT_BOLD);
@@ -125,7 +133,7 @@ public class BtenAdapter extends BaseAdapter {
         tvProcess.setText(matconList.get(position).process);
         tvProcess.setTextSize(12);
         //buttons
-       /* final Button likeButtton =(Button)view.findViewById(R.id.LikeBtn);
+        final Button likeButtton =(Button)view.findViewById(R.id.LikeBtn);
         likeButtton.setText(""+matconList.get(position).recRate);
         likeButtton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +142,7 @@ public class BtenAdapter extends BaseAdapter {
                 likeButtton.setText(""+((matconList.get(position).recRate)+1));
             }
         });
-*/
+
         bldr.setView(view);
         bldr.show();
     }
@@ -142,6 +150,8 @@ public class BtenAdapter extends BaseAdapter {
     {
         matconList = new ArrayList();
         final ProgressDialog pd = new ProgressDialog(context);
+        pd.setTitle("loading");
+        pd.setMessage("loading matkonim");
         pd.show();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myref = database.getReference("Matconim DB list");
@@ -151,7 +161,6 @@ public class BtenAdapter extends BaseAdapter {
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
-                    Log.e("TEST", "onDataChange: "+recivedRec.recName );
                     matconList.add(recivedRec);
                 }
                 notifyDataSetChanged();
