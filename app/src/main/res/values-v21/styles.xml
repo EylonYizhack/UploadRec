@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-        <style name="AppTheme" parent="Theme.AppCompat.Light">
-                <!-- Customize your theme here. -->
-                <item name="colorPrimary">#C91400</item>
-                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-                <item name="colorAccent">#070505</item>
-                <item name="android:colorBackground">#ffffff</item>
-                <item name="android:colorForeground">
-                        @color/common_plus_signin_btn_text_dark_default
-                </item>
-                <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
-                <item name="android:windowBackground">@color/background_material_light</item>
-                <item name="android:textColorPrimaryInverse">
-                        @color/abc_primary_text_disable_only_material_light
-                </item>
-                <item name="android:textColorPrimary">@color/abc_search_url_text_pressed</item>
-                <item name="android:statusBarColor">@color/black</item>
-        </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#C91400</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#070505</item>
+        <item name="android:colorBackground">#ffffff</item>
+        <item name="android:colorForeground">
+            @color/common_plus_signin_btn_text_dark_default
+        </item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
+        <item name="android:textColorPrimaryInverse">
+            @color/abc_primary_text_disable_only_material_light
+        </item>
+        <item name="android:textColorPrimary">@color/abc_search_url_text_pressed</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
 </resources>

@@ -160,8 +160,8 @@ public class BtenAdapter extends BaseAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
-                    UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
-                    matconList.add(recivedRec);
+//                    UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
+//                    matconList.add(recivedRec);
                 }
                 notifyDataSetChanged();
                 pd.dismiss();

@@ -3,16 +3,8 @@ package com.chatter.android.uploadrec;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -20,21 +12,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphRequestAsyncTask;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
 import com.facebook.Profile;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class Login extends Activity {
         private LoginButton loginButton;
@@ -89,7 +69,7 @@ public class Login extends Activity {
                     {
                         UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),profile.getName(),"userImg",0);
                         umUser.saveUser();
-                        Intent i = new Intent(Login.this, HomePage.class);
+                        Intent i = new Intent(Login.this, HomePage_old.class);
                         startActivity(i);
                     }
 
@@ -115,7 +95,7 @@ public class Login extends Activity {
 
         public void continueAsGuest(View view)
         {
-            Intent i = new Intent(Login.this, HomePage.class);
+            Intent i = new Intent(Login.this, HomePage_old.class);
             startActivity(i);
         }
 }
