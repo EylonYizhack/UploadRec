@@ -5,8 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +67,25 @@ public class BtenAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        LinearLayout bigLL = new LinearLayout(context);
+        bigLL.setOrientation(LinearLayout.HORIZONTAL);
+
+        LinearLayout ivLl = new LinearLayout(context);
+        ivLl.setOrientation(LinearLayout.VERTICAL);
+        ImageView ivIcon = new CustomImageView(context);
+        ivIcon.setImageResource(R.drawable.imgr);
+        //ivIcon.setImageResource(R.drawable.pic);
+        // ivIcon.setBackground(Drawable.createFromPath());
+        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(150,150);
+        ivIcon.setLayoutParams(parms);
+        ivLl.addView(ivIcon);
+        ivIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImageInflater(context,position);
+            }
+        });
+
         LinearLayout ll = new LinearLayout(context);
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -83,7 +105,10 @@ public class BtenAdapter extends BaseAdapter {
             }
         });
         ll.addView(subTitles);
-        return ll;
+        ll.setWeightSum(1);
+        bigLL.addView(ivLl);
+        bigLL.addView(ll);
+        return bigLL;
     }
 
     public void setInflater(final Context context, final int position)
@@ -97,8 +122,9 @@ public class BtenAdapter extends BaseAdapter {
         tvName.setTypeface(Typeface.DEFAULT_BOLD);
         //photo
         ImageView ivRecImage = (ImageView) view.findViewById(R.id.ivRecImage);
-        Bitmap bmImg = BitmapFactory.decodeFile(matconList.get(position).recImg);
-        ivRecImage.setImageBitmap(bmImg);
+        /*byte[] imageAsBytes = Base64.decode((matconList.get(position).recImg).getBytes(), Base64.DEFAULT);
+        ivRecImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
+        //Bitmap bmImg = BitmapFactory.decodeFile(matconList.get(position).recImg);*/
         //LinearLayout details presentation
         TextView tvDetailsPres = (TextView)view.findViewById(R.id.tvDetailsPresentation);
         tvDetailsPres.setTypeface(Typeface.DEFAULT_BOLD);
@@ -146,6 +172,17 @@ public class BtenAdapter extends BaseAdapter {
         bldr.setView(view);
         bldr.show();
     }
+
+    public void setImageInflater(final Context context, final int position) {
+        final AlertDialog bldr = new AlertDialog.Builder(context).create();
+        //photo
+        ImageView mIv = new ImageView(context);
+        mIv.setImageResource(R.drawable.food);
+
+        bldr.setView(mIv);
+        bldr.show();
+    }
+
     public void getData()
     {
         matconList = new ArrayList();
