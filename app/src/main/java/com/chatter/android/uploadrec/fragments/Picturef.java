@@ -2,10 +2,12 @@ package com.chatter.android.uploadrec.fragments;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chatter.android.uploadrec.CustomImageView;
 import com.chatter.android.uploadrec.R;
 
 import java.io.File;
@@ -35,16 +38,17 @@ public class Picturef extends Fragment {
     private ImageView myImage;
     Bitmap myBitmap;
     Button fireCamBtn;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_picturef, container, false);
-        // recFreeEditText=(EditText) rootView.findViewById(R.id.recFreeEditText);
         myImage = (ImageView) rootView.findViewById(R.id.camImage);
         Log.e("camera", "onCreate:  " + picturePath);
         fireCamBtn = (Button) rootView.findViewById(R.id.fireCamID);
+        myImage.setImageResource(R.drawable.food);
         fireCamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

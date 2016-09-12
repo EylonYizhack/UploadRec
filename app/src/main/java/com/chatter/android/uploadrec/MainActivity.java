@@ -7,9 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -64,12 +66,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         detailsBtn=(Button)findViewById(R.id.detailsBtn);
         pictureBtn=(Button)findViewById(R.id.pictureBtn);
         ingredientsBtn=(Button)findViewById(R.id.ingredientsBtn);
         processBtn=(Button)findViewById(R.id.processBtn);
         this.context=this;
+        detailsBtn.setBackgroundColor(Color.parseColor("#FF6161"));
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         myFragD=new Details();
@@ -79,7 +81,12 @@ public class MainActivity extends AppCompatActivity
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            //button change to "done" V
+            processBtn.setText("");
+            processBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.done, 0, 0, 0);
+            processBtn.setTextColor(Color.WHITE);
+            processBtn.setBackgroundColor(Color.parseColor("#C91400"));
+            //
             recName=myFragD.getDetailsName();
             timeTillDone=myFragD.getTimeTillDone();
             recImg=myFragPic.getPicture();//***
@@ -145,34 +152,45 @@ public class MainActivity extends AppCompatActivity
 //__________________________________________________________________________________________________
     public void onClickPicture(View v)
     {
-        //load fragment 2
-        ft = fm.beginTransaction();
+            if(1==1)
+            {
+                pictureBtn.setBackgroundColor(Color.parseColor("#FF6161"));
+                //load fragment 2
+                ft = fm.beginTransaction();
+                myFragPic = new Picturef();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                ft.replace(R.id.container, myFragPic);
+                ft.commit();
+                detailsBtn.setText("");
+                detailsBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.done, 0, 0, 0);
+                detailsBtn.setTextColor(Color.WHITE);
+                detailsBtn.setBackgroundColor(Color.parseColor("#C91400"));
+            }
+            else
+            {Toast.makeText(context,"למלא הכל",Toast.LENGTH_SHORT).show();}
 
-        myFragPic = new Picturef();
-
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        ft.replace(R.id.container, myFragPic);
-        ft.commit();
-        detailsBtn.setText("V");
-        detailsBtn.setBackgroundColor(Color.parseColor("#C91400"));
+        //}
     }
 //__________________________________________________________________________________________________
     public void onClickIngredients(View v)
     {
-
-            //load fragment 3
+            ingredientsBtn.setBackgroundColor(Color.parseColor("#FF6161"));
+        //load fragment 3
             ft = fm.beginTransaction();
             myFragI = new Ingredientsf();
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             ft.replace(R.id.container, myFragI);
             ft.commit();
-            pictureBtn.setText("V");
+            pictureBtn.setText("");
+            pictureBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.done, 0, 0, 0);
             pictureBtn.setBackgroundColor(Color.parseColor("#C91400"));
+
     }
 //__________________________________________________________________________________________________
     public void onClickProcess(View v)
     {
-            ingredientsBtn.setText("V");
+        processBtn.setBackgroundColor(Color.parseColor("#FF6161"));
+        ingredientsBtn.setText("V");
             ingredientsBtn.setBackgroundColor(Color.parseColor("#C91400"));
                 //load fragment 4
                 ft = fm.beginTransaction();
@@ -180,9 +198,9 @@ public class MainActivity extends AppCompatActivity
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                 ft.replace(R.id.container, myFragP);
                 ft.commit();
-                ingredientsBtn.setText("V");
+                ingredientsBtn.setText("");
+                ingredientsBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.done, 0, 0, 0);
                 ingredientsBtn.setBackgroundColor(Color.parseColor("#C91400"));
-
      }
 //__________________________________________________________________________________________________
     public void uptadeUserScore()
@@ -237,4 +255,12 @@ public class MainActivity extends AppCompatActivity
         return uuid.toString();
     }
 //__________________________________________________________________________________________________
+    public boolean detailsDone()
+    {
+        if(recName.equals(null)) //||(timeTillDone != "a")||recCategory != ""||recPeople != ""||recHezka != ""||recWorth != ""||recLvl != ""||recHollyday != ""||recHalfy != "")
+        {return false;}
+        else
+        {return true;}
+    }
+
 }
