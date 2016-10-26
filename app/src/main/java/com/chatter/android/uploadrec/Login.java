@@ -46,6 +46,7 @@ public class Login extends Activity {
         this.context=context;
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
@@ -59,7 +60,6 @@ public class Login extends Activity {
         });
 
     }
-
 
         private void updateWithToken(AccessToken currentAccessToken) {
             if (currentAccessToken != null) {
