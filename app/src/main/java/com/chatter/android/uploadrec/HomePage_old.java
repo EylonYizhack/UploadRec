@@ -1,14 +1,9 @@
 package com.chatter.android.uploadrec;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.*;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage_old extends AppCompatActivity {
         Toolbar toolbar;
         String userScore;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_home_page);
+            setContentView(R.layout.activity_home_page_old_1);
 
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -88,7 +82,7 @@ public class HomePage extends AppCompatActivity {
                     dlgFecbookConect();
                 }
                 else
-                {*/Intent i = new Intent(HomePage.this,MainActivity.class);
+                {*/Intent i = new Intent(HomePage_old.this,MainActivity.class);
                     startActivity(i);//}
                 break;
             case R.id.About:
@@ -137,7 +131,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userScore=dataSnapshot.getValue().toString();
-                Toast.makeText(HomePage.this, "you have "+userScore+" points", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage_old.this, "you have "+userScore+" points", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

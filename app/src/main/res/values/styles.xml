@@ -9,13 +9,18 @@
         <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:textColorPrimary">@color/abc_search_url_text_pressed</item>
     </style>
+
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
         <item name="tabBackground">@drawable/tab_background</item>
         <item name="tabIndicatorColor">#ffffff</item>
         <item name="tabIndicatorHeight">4dp</item>
     </style>
 
-    <style name="cookittheme" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="cookittheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="cookittheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="cookittheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
