@@ -30,44 +30,44 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
-        Toolbar toolbar;
-        String userScore;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_home_page);
+    Toolbar toolbar;
+    String userScore;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_page_old_1);
 
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-            final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter));
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook));
+        final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rating));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fridge));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.filter));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.mycook));
 
-            tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
-            tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-            tabLayout.setTextDirection(View.TEXT_DIRECTION_RTL);
+        tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
+        tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        tabLayout.setTextDirection(View.TEXT_DIRECTION_RTL);
 
-            final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-            final PagerAdapterHomePage adapter = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
-            viewPager.setAdapter(adapter);
-            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    viewPager.setCurrentItem(tab.getPosition());
-                }
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-                }
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
-                }
-            });
-        }
+        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final PagerAdapterHomePage adapter = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+    }
     //______________________________________________________________________________________________
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -89,7 +89,7 @@ public class HomePage extends AppCompatActivity {
                 }
                 else
                 {*/Intent i = new Intent(HomePage.this,MainActivity.class);
-                    startActivity(i);//}
+                startActivity(i);//}
                 break;
             case R.id.About:
                 Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class HomePage extends AppCompatActivity {
         // positive feed back
         builder.setPositiveButton("אישור", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-              finish();
+                finish();
             }
         });
         //negative feed back
@@ -146,5 +146,3 @@ public class HomePage extends AppCompatActivity {
     }
     //______________________________________________________________________________________________
 }
-
-
