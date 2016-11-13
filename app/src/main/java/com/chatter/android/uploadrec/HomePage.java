@@ -29,14 +29,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import klogi.com.RtlViewPager;
+
 public class HomePage extends AppCompatActivity {
     Toolbar toolbar;
     String userScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page_old_1);
-
+        setContentView(R.layout.activity_home_page);
+        userScorePresent();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,7 +53,7 @@ public class HomePage extends AppCompatActivity {
         tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         tabLayout.setTextDirection(View.TEXT_DIRECTION_RTL);
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final ViewPager viewPager = (RtlViewPager)findViewById(R.id.pager);
         final PagerAdapterHomePage adapter = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -68,6 +70,9 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
+
+
+
     //______________________________________________________________________________________________
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -82,14 +87,15 @@ public class HomePage extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.GoogleLogin:
-            /*    if(Profile.getCurrentProfile()==null)
+            case R.id.newRec:
+                if(Profile.getCurrentProfile()==null)
                 {
                     dlgFecbookConect();
                 }
                 else
-                {*/Intent i = new Intent(HomePage.this,MainActivity.class);
-                startActivity(i);//}
+                {
+                Intent i = new Intent(HomePage.this,MainActivity.class);
+                startActivity(i);}
                 break;
             case R.id.About:
                 Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();

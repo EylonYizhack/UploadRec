@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.util.Base64;
 import android.util.Log;
@@ -29,6 +30,12 @@ import android.widget.Toast;
 import com.chatter.android.uploadrec.utilClasses.IngListAdapter;
 import com.chatter.android.uploadrec.utilClasses.IngListAdapterPresentation;
 import com.chatter.android.uploadrec.utilClasses.Ingredients;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +50,10 @@ public class BtenAdapter extends BaseAdapter {
     Context context;
     List<UsersMatconim> matconList;
     View view1;
+    ShareDialog shareDialog;
+    private CallbackManager callbackManager;
+
+
     public BtenAdapter(Context context)
     {
         this.context = context;
@@ -164,11 +175,46 @@ public class BtenAdapter extends BaseAdapter {
         likeButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //updateRecRate(matconList.get(position).recId);
+                updateRecRate(matconList.get(position).recId);
                 likeButtton.setText(""+((matconList.get(position).recRate)+1));
             }
         });
+        final Button shareButton =(Button)view.findViewById(R.id.ShareOnFacebookBtn);
+        likeButtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+             //   shareDialog = new ShareDialog(this);
+
+                shareDialog.registerCallback(callbackManager, new
+
+                        FacebookCallback<Sharer.Result>() {
+                            @Override
+                            public void onSuccess(Sharer.Result result) {}
+
+                            @Override
+                            public void onCancel() {}
+
+                            @Override
+                            public void onError(FacebookException error) {}
+                        });
+
+                shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (ShareDialog.canShow(ShareLinkContent.class)) {
+                            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                    .setContentTitle("Hello Facebook")
+                                    .setContentDescription("The 'Hello Facebook' sample  showcases simple Facebook integration")
+                                    .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                                    .build();
+
+                            shareDialog.show(linkContent);
+                        }
+                    }});
+
+            }
+        });
         bldr.setView(view);
         bldr.show();
     }
@@ -197,8 +243,8 @@ public class BtenAdapter extends BaseAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
-//                    UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
-//                    matconList.add(recivedRec);
+                    UsersMatconim recivedRec = item.getValue(UsersMatconim.class);
+                    matconList.add(recivedRec);
                 }
                 notifyDataSetChanged();
                 pd.dismiss();
@@ -210,7 +256,7 @@ public class BtenAdapter extends BaseAdapter {
             }
         });
     }
-/*
+
     private void updateRecRate(String recId)
     {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -219,8 +265,8 @@ public class BtenAdapter extends BaseAdapter {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-               // myref1.setValue(Integer.parseInt(dataSnapshot.getValue().toString())+3);
-                //notifyDataSetChanged();
+                myref1.setValue(Integer.parseInt(dataSnapshot.getValue().toString())+3);
+                notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -228,6 +274,6 @@ public class BtenAdapter extends BaseAdapter {
 
             }
         });
-    }*/
+    }
 
 }

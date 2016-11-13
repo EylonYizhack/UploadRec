@@ -10,18 +10,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
+     <!--   <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="חפש במתכונים שלי"
             android:id="@+id/btn2"
             android:onClick="onclick"
-            android:gravity="center"
+            android:gravity="center" -->
             />
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listOfRecBestTen"
+            android:id="@+id/myOwnList"
             android:textDirection="rtl"
             android:layoutDirection="rtl">
         </ListView>

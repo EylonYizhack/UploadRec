@@ -231,24 +231,7 @@ public class MainActivity extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 //__________________________________________________________________________________________________
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.GoogleLogin:
-                Toast.makeText(this,"google",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.About:
-                Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.Logout:
-                Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-//__________________________________________________________________________________________________
+
     private String getUuid()
     {
         UUID uuid = UUID.randomUUID();

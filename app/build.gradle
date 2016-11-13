@@ -32,5 +32,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.android.gms:play-services-auth:9.0.2'
     compile 'com.android.support:design:23.4.0'
+    compile 'klogi.com:rtlviewpager:1.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

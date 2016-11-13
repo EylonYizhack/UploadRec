@@ -1,11 +1,4 @@
-
-
-
-
-
-
 package com.chatter.android.uploadrec.fragmentsOfHomePage;
-
 
 import android.content.Context;
 import android.os.Bundle;

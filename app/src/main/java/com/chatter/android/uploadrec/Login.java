@@ -77,7 +77,7 @@ public class Login extends Activity {
                     {
                         UsersMatconim umUser = new UsersMatconim(loginResult.getAccessToken().getUserId(),profile.getName(),"userImg",0);
                         umUser.saveUser();
-                        Intent i = new Intent(Login.this, HomePage_old.class);
+                        Intent i = new Intent(Login.this, HomePage.class);
                         startActivity(i);
                     }
                 }
@@ -102,7 +102,7 @@ public class Login extends Activity {
 
         public void continueAsGuest(View view)
         {
-            Intent i = new Intent(Login.this, HomePage_old.class);
+            Intent i = new Intent(Login.this, HomePage.class);
             startActivity(i);
         }
 }
