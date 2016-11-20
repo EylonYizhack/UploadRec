@@ -8,9 +8,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.*;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +22,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +36,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import klogi.com.RtlViewPager;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Toolbar toolbar;
     String userScore;
+
+    //$$$$
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private ListView navList;
+    private DrawerLayout drawerLayout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +57,33 @@ public class HomePage extends AppCompatActivity {
         userScorePresent();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //$$$$
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        navList =(ListView)findViewById(R.id.mav_list);
+        ArrayList<String> navArray = new ArrayList<String>();
+        navArray.add("a");
+        navArray.add("b");
+        navArray.add("c");
+        navArray.add("d");
+        navArray.add("e");
+        navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1,navArray);
+
+        navList.setAdapter(adapter);
+        navList.setOnItemClickListener(this);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.openDrawer,R.string.closeDrawer);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        loadSelection(0);
+        //__________________
+
+
 
         final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
@@ -54,8 +97,8 @@ public class HomePage extends AppCompatActivity {
         tabLayout.setTextDirection(View.TEXT_DIRECTION_RTL);
 
         final ViewPager viewPager = (RtlViewPager)findViewById(R.id.pager);
-        final PagerAdapterHomePage adapter = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
+        final PagerAdapterHomePage adapter1 = new PagerAdapterHomePage(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter1);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -72,9 +115,35 @@ public class HomePage extends AppCompatActivity {
     }
 
 
+    private void loadSelection(int i) {
+        navList.setItemChecked(i, true);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (false) {
+
+        } else if (id == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(navList)) {
+                drawerLayout.closeDrawer(navList);
+
+            } else {
+                drawerLayout.openDrawer(navList);
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     //______________________________________________________________________________________________
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflater =  getMenuInflater();
@@ -105,7 +174,7 @@ public class HomePage extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     //______________________________________________________________________________________________
 //if the user try to upload recpie without beeing logged
     private void dlgFecbookConect()
@@ -149,6 +218,23 @@ public class HomePage extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        drawerLayout.closeDrawer(navList);
     }
     //______________________________________________________________________________________________
 }

@@ -30,6 +30,8 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.android.support:support-v4:+'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.facebook.android:audience-network-sdk:4.+'
+    compile 'com.facebook.android:account-kit-sdk:4.+'
     compile 'com.google.android.gms:play-services-auth:9.0.2'
     compile 'com.android.support:design:23.4.0'
     compile 'klogi.com:rtlviewpager:1.0.0'
