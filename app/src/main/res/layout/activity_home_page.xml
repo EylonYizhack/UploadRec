@@ -15,8 +15,10 @@ android:layoutDirection="ltr">
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:background="#C91400"/>
+        android:textDirection="rtl"
+        android:layoutDirection="rtl"
+        android:background="#C91400"
+        />
 
     <android.support.v4.widget.DrawerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,6 +26,8 @@ android:layoutDirection="ltr">
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
         >
 
         <FrameLayout
@@ -37,8 +41,11 @@ android:layoutDirection="ltr">
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mav_list"
-            android:background="#f6bfbf"
-            android:layout_gravity="start" />
+            android:background="#ffcc99"
+            android:layout_gravity="start"
+            android:cacheColorHint="#1a0d00"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"

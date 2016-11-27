@@ -62,11 +62,11 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         navList =(ListView)findViewById(R.id.mav_list);
         ArrayList<String> navArray = new ArrayList<String>();
-        navArray.add("a");
-        navArray.add("b");
-        navArray.add("c");
-        navArray.add("d");
-        navArray.add("e");
+        navArray.add("העלה מתכון חדש");
+        navArray.add("א");
+        navArray.add("א");
+        navArray.add("א");
+        navArray.add("א");
         navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1,navArray);
@@ -142,40 +142,6 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
         return super.onOptionsItemSelected(item);
     }
 
-    //______________________________________________________________________________________________
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater =  getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    //______________________________________________________________________________________________
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.newRec:
-                if(Profile.getCurrentProfile()==null)
-                {
-                    dlgFecbookConect();
-                }
-                else
-                {
-                Intent i = new Intent(HomePage.this,MainActivity.class);
-                startActivity(i);}
-                break;
-            case R.id.About:
-                Toast.makeText(this,"About",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.Logout:
-                Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-    //______________________________________________________________________________________________
 //if the user try to upload recpie without beeing logged
     private void dlgFecbookConect()
     {
@@ -224,8 +190,18 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
+                if(Profile.getCurrentProfile()==null)
+                {
+                    dlgFecbookConect();
+                }
+                else
+                {
+                    Intent i = new Intent(HomePage.this,MainActivity.class);
+                    startActivity(i);}
                 break;
             case 1:
+                Intent i1 = new Intent(HomePage.this,MainActivity.class);
+                startActivity(i1);
                 break;
             case 2:
                 break;
