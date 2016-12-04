@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -48,6 +49,7 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ListView navList;
     private DrawerLayout drawerLayout;
+    private NavigationView mNavView;
 
 
     @Override
@@ -60,7 +62,17 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
 
         //$$$$
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        navList =(ListView)findViewById(R.id.mav_list);
+        mNavView = (NavigationView)findViewById(R.id.navView);
+        mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
+        {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+                drawerLayout.closeDrawers();
+                return false;
+            }
+        });
+      //  navList =(ListView)findViewById(R.id.mav_list);
         ArrayList<String> navArray = new ArrayList<String>();
         navArray.add("העלה מתכון חדש");
         navArray.add("א");
@@ -82,8 +94,6 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
         actionBar.setDisplayHomeAsUpEnabled(true);
         loadSelection(0);
         //__________________
-
-
 
         final TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.menu));
@@ -112,6 +122,7 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
     }
 
 
@@ -126,12 +137,11 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
+        item.setChecked(true);
 
-        if (false) {
-
-        } else if (id == android.R.id.home) {
+         if (id == android.R.id.home) {
             if (drawerLayout.isDrawerOpen(navList)) {
                 drawerLayout.closeDrawer(navList);
 
@@ -210,7 +220,10 @@ public class HomePage extends AppCompatActivity implements AdapterView.OnItemCli
             case 4:
                 break;
         }
+        Intent i2 = new Intent(HomePage.this,MainActivity.class);
+        startActivity(i2);
         drawerLayout.closeDrawer(navList);
+
     }
     //______________________________________________________________________________________________
 }

@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                     protected Void doInBackground(Void... params)
                     {
                         try {
-                            UsersMatconim umRec = new UsersMatconim("AccessToken.getCurrentAccessToken().getUserId()","Profile.getCurrentProfile().getName().toString()",getUuid(),recName,0,timeTillDone,recImg,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
+                            UsersMatconim umRec = new UsersMatconim(AccessToken.getCurrentAccessToken().getUserId(),Profile.getCurrentProfile().getName().toString(),getUuid(),recName,0,timeTillDone,recImg,recCategory,recPeople,recHezka,recWorth,recLvl,recHollyday,recHalfy,ingList,process);
                             umRec.saveMatcon();
                             //Log.e("user path:", "doInBackground: "+"User\\"+Profile.getCurrentProfile().getId()+"/userScore" );
                         } catch (Exception e) {
