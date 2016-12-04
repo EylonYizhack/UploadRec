@@ -20,6 +20,7 @@ public class RecpieDet {
     String numAmount;
     String amount;
     String Ing;
+    String testOnMe;//<--no usable
 
 
     public RecpieDet(){}  //empty constructor, must have
